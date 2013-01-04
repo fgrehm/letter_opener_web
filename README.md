@@ -1,6 +1,7 @@
 # LetterOpenerWeb
 
-TODO: Write a gem description
+Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
+browsing sent emails.
 
 ## Installation
 
