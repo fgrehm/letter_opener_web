@@ -1,18 +1,17 @@
 require 'rubygems'
-require 'bundler'
+require 'bundler/setup'
 
+# require 'capybara/rspec'
+
+require 'combustion'
 Bundler.require :default, :test
 
-require 'capybara/rspec'
-
-Combustion.initialize!
+Combustion.initialize! :action_controller, :action_view, :sprockets, :action_mailer
 
 require 'rspec/rails'
-require 'capybara/rails'
+# require 'capybara/rails'
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
-
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.filter_run :focus => true
   config.run_all_when_everything_filtered = true

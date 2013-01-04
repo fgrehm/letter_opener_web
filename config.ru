@@ -1,7 +1,8 @@
 require 'rubygems'
-require 'bundler'
+require 'bundler/setup'
 
+require 'combustion'
 Bundler.require :default, :development
 
-Combustion.initialize!
+Combustion.initialize! :action_controller, :action_view, :sprockets
 run Combustion::Application
