@@ -1,4 +1,4 @@
 LetterOpenerWeb::Engine.routes.draw do
   get '/'   => 'letters#index'
-  get ':id' => 'letters#new'
+  get ':id(/:style)' => 'letters#show', as: :letter
 end
