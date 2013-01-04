@@ -1,5 +1,19 @@
 #!/usr/bin/env rake
 
+desc 'Print out all defined routes in match order, with names. Target specific controller with CONTROLLER=x.'
+task :routes do
+  require 'combustion'
+  Bundler.require :default, :development
+
+  Combustion.initialize! :action_controller, :action_view, :sprockets, :action_mailer
+
+  all_routes = LetterOpenerWeb::Engine.routes.routes
+
+  require 'rails/application/route_inspector'
+  inspector = Rails::Application::RouteInspector.new
+  puts inspector.format(all_routes, ENV['CONTROLLER']).join "\n"
+end
+
 begin
   require 'rdoc/task'
 rescue LoadError
