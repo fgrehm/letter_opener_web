@@ -1,5 +1,4 @@
-require "letter_opener_web/version"
+require "letter_opener_web/engine"
 
 module LetterOpenerWeb
-  # Your code goes here...
 end
