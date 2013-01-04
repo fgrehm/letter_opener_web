@@ -1,12 +1,16 @@
 module LetterOpenerWeb
   class Letter
-    attr_reader :id, :updated_at
+    cattr_accessor :letters_location do
+      Rails.root.join("tmp", "letter_opener")
+    end
+
+    attr_reader :id, :sent_at
 
     def self.search
-      letters = Dir.glob("#{LetterOpener.letters_location}/*").map do |folder|
-        new :id => File.basename(folder), :updated_at => File.mtime(folder)
+      letters = Dir.glob("#{letters_location}/*").map do |folder|
+        new :id => File.basename(folder), :sent_at => File.mtime(folder)
       end
-      letters.sort_by(&:updated_at).reverse
+      letters.sort_by(&:sent_at).reverse
     end
 
     def self.find(id)
@@ -14,12 +18,12 @@ module LetterOpenerWeb
     end
 
     def self.destroy_all
-      FileUtils.rm_rf(LetterOpener.letters_location)
+      FileUtils.rm_rf(letters_location)
     end
 
     def initialize(params)
-      @id         = params.fetch(:id)
-      @updated_at = params[:updated_at]
+      @id      = params.fetch(:id)
+      @sent_at = params[:sent_at]
     end
 
     def plain_text
@@ -33,7 +37,7 @@ module LetterOpenerWeb
     private
 
     def read_file(style)
-      File.read("#{LetterOpener.letters_location}/#{id}/#{style}.html")
+      File.read("#{letters_location}/#{id}/#{style}.html")
     end
   end
 end

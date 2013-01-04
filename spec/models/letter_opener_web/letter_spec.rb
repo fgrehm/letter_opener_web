@@ -3,15 +3,21 @@ require 'spec_helper'
 describe LetterOpenerWeb::Letter do
   let(:location) { File.expand_path('../../../tmp', __FILE__) }
 
-  before(:each) do
-    LetterOpener.stub(:letters_location).and_return(location)
+  before :each do
+    described_class.stub(:letters_location).and_return(location)
+    described_class.any_instance.stub(:letters_location).and_return(location)
 
-    FileUtils.rm_rf(location)
     ['1111_1111', '2222_2222'].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
       File.open("#{location}/#{folder}/plain.html", 'w') {|f| f.write("Plain text for #{folder}") }
       File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
+      FileUtils.mkdir_p("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}")
+      File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
     end
+  end
+
+  after :each do
+    FileUtils.rm_rf(location)
   end
 
   it 'loads rich version' do
@@ -33,7 +39,7 @@ describe LetterOpenerWeb::Letter do
     end
 
     it 'returns a list of ordered letters' do
-      first_letter.updated_at.should > last_letter.updated_at
+      first_letter.sent_at.should > last_letter.sent_at
     end
   end
 

@@ -1,0 +1,18 @@
+<h1>Inbox</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Sent at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @letters.each do |letter| %>
+      <tr>
+        <td><%= letter.id %></td>
+        <td><%= letter.sent_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
