@@ -18,4 +18,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'rails', '~> 3.2'
+  gem.add_dependency 'letter_opener', '~> 1.0'
+
+  gem.add_development_dependency 'rspec-rails'
+  gem.add_development_dependency 'combustion', '~> 0.3.1'
 end
