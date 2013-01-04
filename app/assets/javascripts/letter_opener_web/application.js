@@ -12,3 +12,12 @@
 //
 //= require jquery-1.8.3.min
 //= require_tree .
+
+jQuery(function($) {
+  $('.letter-opener tr').click(function() {
+    var $this = $(this);
+    $('iframe').attr('src', $this.find('a').attr('href'));
+    $this.parent().find('.active').removeClass('active');
+    $this.addClass('active');
+  });
+});

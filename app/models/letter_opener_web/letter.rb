@@ -34,6 +34,10 @@ module LetterOpenerWeb
       @rich_text ||= read_file(:rich)
     end
 
+    def to_param
+      id
+    end
+
     private
 
     def read_file(style)

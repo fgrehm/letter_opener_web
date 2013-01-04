@@ -1,26 +1,36 @@
-<div class="row-fluid">
-  <div class="span5">
-    <h1>Inbox</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Sent at</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @letters.each do |letter| %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span5">
+      <h1>Letters</h1>
+      <table class="table table-hover letter-opener">
+        <thead>
           <tr>
-            <td><%= letter.id %></td>
+            <th>ID</th>
+            <th>Sent at</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% letter = @letters.pop %>
+          <tr class="active">
+            <td>
+              <%= link_to(letter.id, letter_path(letter, style: 'rich'), target: 'mail') %>
+            </td>
             <td><%= letter.sent_at %></td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="span7">
-    <div class="alert">
-      Here goes an iframe
+          <% @letters.each do |letter| %>
+            <tr>
+              <td>
+                <%= link_to(letter.id, letter_path(letter, style: 'rich'), target: 'mail') %>
+              </td>
+              <td><%= letter.sent_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="span7">
+      <h1>Content</h1>
+      <iframe name="mail" id="mail" src="<%= letter_path(@letters.first, style: 'rich') %>"></iframe>
     </div>
   </div>
 </div>
