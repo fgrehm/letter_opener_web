@@ -19,7 +19,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add to your routest.rb:
+
+```ruby
+if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+end
+```
 
 ## Credits
 
