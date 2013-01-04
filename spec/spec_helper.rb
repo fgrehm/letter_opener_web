@@ -1,15 +1,12 @@
 require 'rubygems'
 require 'bundler/setup'
 
-# require 'capybara/rspec'
-
 require 'combustion'
 Bundler.require :default, :test
 
 Combustion.initialize! :action_controller, :action_view, :sprockets, :action_mailer
 
 require 'rspec/rails'
-# require 'capybara/rails'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
