@@ -45,4 +45,11 @@ describe LetterOpenerWeb::Letter do
       letter.id.should == id
     end
   end
+
+  describe '.destroy_all' do
+    it 'removes all letters' do
+      described_class.destroy_all
+      Dir["#{location}/**/*"].should be_empty
+    end
+  end
 end

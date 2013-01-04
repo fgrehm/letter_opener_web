@@ -13,6 +13,10 @@ module LetterOpenerWeb
       new id: id
     end
 
+    def self.destroy_all
+      FileUtils.rm_rf(LetterOpener.letters_location)
+    end
+
     def initialize(params)
       @id         = params.fetch(:id)
       @updated_at = params[:updated_at]
