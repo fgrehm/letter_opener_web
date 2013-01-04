@@ -45,4 +45,16 @@ describe LetterOpenerWeb::LettersController do
       end
     end
   end
+
+  describe 'DELETE clear' do
+    it 'removes all letters' do
+      LetterOpenerWeb::Letter.should_receive(:destroy_all)
+      delete :clear
+    end
+
+    it 'redirects back to index' do
+      delete :clear
+      response.should redirect_to(letters_path)
+    end
+  end
 end

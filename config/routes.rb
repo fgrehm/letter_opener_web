@@ -1,4 +1,5 @@
 LetterOpenerWeb::Engine.routes.draw do
-  get '/'   => 'letters#index'
-  get ':id(/:style)' => 'letters#show', as: :letter
+  delete 'clear'        => 'letters#clear', as: :clear_letters
+  get    '/'            => 'letters#index', as: :letters
+  get    ':id(/:style)' => 'letters#show',  as: :letter
 end

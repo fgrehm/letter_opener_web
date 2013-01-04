@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  get '/'   => 'letter_opener_web/letters#index'
-  get ':id(/:style)' => 'letter_opener_web/letters#show', as: :letter
+  delete 'clear'        => 'letter_opener_web/letters#clear'
+  get    '/'            => 'letter_opener_web/letters#index', as: :letters
+  get    ':id(/:style)' => 'letter_opener_web/letters#show',  as: :letter
 end

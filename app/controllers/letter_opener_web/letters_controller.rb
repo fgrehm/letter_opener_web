@@ -13,5 +13,10 @@ module LetterOpenerWeb
         gsub(/"rich\.html"/, "\"#{letter_path(id: letter.id, style: 'rich')}\"")
       render text: text
     end
+
+    def clear
+      Letter.destroy_all
+      redirect_to letters_path
+    end
   end
 end
