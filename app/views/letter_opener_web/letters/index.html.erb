@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <% if first_letter = @letters.pop %>
+          <% if first_letter = @letters.shift %>
             <tr class="active">
               <td>
                 <%= link_to(first_letter.id, letter_path(first_letter, style: 'rich'), target: 'mail') %>
