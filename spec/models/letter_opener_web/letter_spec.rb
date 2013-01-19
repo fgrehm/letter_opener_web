@@ -10,7 +10,7 @@ describe LetterOpenerWeb::Letter do
     ['1111_1111', '2222_2222'].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
       File.open("#{location}/#{folder}/plain.html", 'w') {|f| f.write("Plain text for #{folder}") }
-      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
+      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder} <!DOCTYPE html><a href='a-link.html'>Link text</a>") }
       FileUtils.mkdir_p("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}")
       File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
     end
@@ -20,12 +20,22 @@ describe LetterOpenerWeb::Letter do
     FileUtils.rm_rf(location)
   end
 
-  it 'loads rich version' do
-    described_class.new(id: '1111_1111').rich_text.should == 'Rich text for 1111_1111'
+  describe 'rich text version' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id).rich_text }
+
+    it { should =~ /Rich text for 1111_1111/ }
+
+    it 'changes links to show up on a new window' do
+      subject.should include("<a href='a-link.html' target='_blank'>Link text</a>")
+    end
   end
 
-  it 'loads plain text version' do
-    described_class.new(id: '2222_2222').plain_text.should == 'Plain text for 2222_2222'
+  describe 'plain text version' do
+    let(:id) { '2222_2222' }
+    subject { described_class.new(id: id).plain_text }
+
+    it { should =~ /Plain text for 2222_2222/ }
   end
 
   describe '.search' do

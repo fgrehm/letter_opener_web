@@ -12,7 +12,7 @@ describe LetterOpenerWeb::LettersController do
   describe 'GET show' do
     let(:id)         { 'an-id' }
     # TODO: Move these to fixture files
-    let(:rich_text)  { "rich text href=\"plain.html\" <!DOCTYPE html><a href=\"a-link.html\">Link text</a>" }
+    let(:rich_text)  { "rich text href=\"plain.html\"" }
     let(:plain_text) { "plain text href=\"rich.html\"" }
     let(:letter)     { mock(:letter, rich_text: rich_text, plain_text: plain_text, id: id) }
 
@@ -27,14 +27,9 @@ describe LetterOpenerWeb::LettersController do
         response.body.should =~ /^rich text/
       end
 
-      # FIXME: Move to letter specs
       it 'fixes plain text link' do
         response.body.should_not =~ /href="plain.html"/
         response.body.should =~ /href="#{Regexp.escape letter_path(id: letter.id, style: 'plain')}"/
-      end
-
-      it 'changes links to show up on a new window' do
-        response.body.should include("<a href='a-link.html' target='_blank'>Link text</a>")
       end
     end
 
@@ -45,7 +40,6 @@ describe LetterOpenerWeb::LettersController do
         response.body.should =~ /^plain text/
       end
 
-      # FIXME: Move to letter specs
       it 'fixes rich text link' do
         response.body.should_not =~ /href="rich.html"/
         response.body.should =~ /href="#{Regexp.escape letter_path(id: letter.id, style: 'rich')}"/

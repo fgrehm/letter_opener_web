@@ -41,7 +41,17 @@ module LetterOpenerWeb
     private
 
     def read_file(style)
-      File.read("#{letters_location}/#{id}/#{style}.html")
+      contents = File.read("#{letters_location}/#{id}/#{style}.html")
+
+      contents.scan(/<a[^>]+>.+<\/a>/).each do |link|
+        xml = REXML::Document.new(link).root
+        unless xml.attributes['href'] =~ /(plain|rich).html/
+          xml.attributes['target'] = '_blank'
+          contents.gsub!(link, xml.to_s)
+        end
+      end
+
+      contents
     end
   end
 end
