@@ -10,7 +10,7 @@ describe LetterOpenerWeb::Letter do
     ['1111_1111', '2222_2222'].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
       File.open("#{location}/#{folder}/plain.html", 'w') {|f| f.write("Plain text for #{folder}") }
-      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder} <!DOCTYPE html><a href='a-link.html'>Link text</a>") }
+      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder} <!DOCTYPE html><a href='a-link.html'><img src='an-image.jpg'/>Link text</a>") }
       FileUtils.mkdir_p("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}")
       File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
     end
@@ -27,7 +27,7 @@ describe LetterOpenerWeb::Letter do
     it { should =~ /Rich text for 1111_1111/ }
 
     it 'changes links to show up on a new window' do
-      subject.should include("<a href='a-link.html' target='_blank'>Link text</a>")
+      subject.should include("<a href='a-link.html' target='_blank'><img src='an-image.jpg'/>Link text</a>")
     end
   end
 
