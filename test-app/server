@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require './boot'
+
+options = {
+  :environment => nil,
+  :pid         => nil,
+  :Port        => 3000,
+  :Host        => "0.0.0.0",
+  :AccessLog   => [],
+  :app         => TinyRailsApp,
+
+  # TODO:
+  # :server      => 'thin'
+}
+
+Rack::Server.start options

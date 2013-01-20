@@ -1,0 +1,11 @@
+source :rubygems
+
+# Required by active_support
+gem "tzinfo"
+
+gem "tiny-rails"
+gem "actionpack",   "~> 3.2"
+gem "actionmailer", "~> 3.2"
+gem "railties",     "~> 3.2"
+
+gem "letter_opener_web", path: '../'
