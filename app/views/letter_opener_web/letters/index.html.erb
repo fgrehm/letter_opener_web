@@ -3,12 +3,18 @@
     <div class="span5">
       <h1>
         Letters
-        <%= link_to clear_letters_path, method: 'delete', confirm: 'Are you sure?', class: 'btn btn-danger pull-right' do %>
-          <i class="icon-trash icon-white"></i>
-          Clear
-        <% end %>
+        <span class="pull-right">
+          <%= link_to letters_path, class: 'btn refresh' do %>
+            <i class="icon-refresh"></i>
+            Refresh
+          <% end %>
+          <%= link_to clear_letters_path, method: 'delete', confirm: 'Are you sure?', class: 'btn btn-danger' do %>
+            <i class="icon-trash icon-white"></i>
+            Clear
+          <% end %>
+        </span>
       </h1>
-      <table class="table table-hover letter-opener">
+      <table class="table table-hover letter-opener" data-letters-path="<%= letters_path %>">
         <thead>
           <tr>
             <th>ID</th>
