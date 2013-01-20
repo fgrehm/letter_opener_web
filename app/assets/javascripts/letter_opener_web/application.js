@@ -14,6 +14,8 @@ jQuery(function($) {
 
     var table = $('.letter-opener');
     table.find('tbody').empty().append('<tr><td colspan="2">Loading...</td></tr>');
-    table.load(table.data('letters-path') + ' .letter-opener');
+    table.load(table.data('letters-path') + ' .letter-opener', function() {
+      $('iframe').attr('src', $('.letter-opener tbody a:first-child()').attr('href'));
+    });
   });
 });
