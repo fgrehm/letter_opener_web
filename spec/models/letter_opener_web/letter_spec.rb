@@ -3,6 +3,18 @@ require 'spec_helper'
 describe LetterOpenerWeb::Letter do
   let(:location) { File.expand_path('../../../tmp', __FILE__) }
 
+  def rich_text(mail_id)
+    <<-MAIL
+Rich text for #{mail_id}
+<!DOCTYPE html>
+<a href='a-link.html'>
+  <img src='an-image.jpg'>
+  Link text
+</a>
+<a href='fooo.html'>Bar</a>
+MAIL
+  end
+
   before :each do
     described_class.stub(:letters_location).and_return(location)
     described_class.any_instance.stub(:letters_location).and_return(location)
@@ -10,7 +22,7 @@ describe LetterOpenerWeb::Letter do
     ['1111_1111', '2222_2222'].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
       File.open("#{location}/#{folder}/plain.html", 'w') {|f| f.write("Plain text for #{folder}") }
-      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder} <!DOCTYPE html><a href='a-link.html'><img src='an-image.jpg'/>Link text</a><a href='fooo.html'>Bar</a>") }
+      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write(rich_text(folder)) }
       FileUtils.mkdir_p("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}")
       File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
     end
@@ -27,7 +39,7 @@ describe LetterOpenerWeb::Letter do
     it { should =~ /Rich text for 1111_1111/ }
 
     it 'changes links to show up on a new window' do
-      subject.should include("<a href='a-link.html' target='_blank'><img src='an-image.jpg'/>Link text</a>")
+      subject.should include("<a href='a-link.html' target='_blank'>\n  <img src='an-image.jpg'/>\n  Link text\n</a>")
     end
   end
 
