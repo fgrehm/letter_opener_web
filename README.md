@@ -5,17 +5,9 @@ browsing sent emails.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+First add the gem to your development environment and run the `bundle` command to install it.
 
-    gem 'letter_opener_web'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install letter_opener_web
+    gem 'letter_opener_web', :group => :development
 
 ## Usage
 
@@ -29,10 +21,10 @@ Your::Application.routes.draw do
 end
 ```
 
-## Credits
+## Acknowledgements
 
-Part of the code was based on [this pull request](https://github.com/ryanb/letter_opener/pull/12)
-by [@alexrothenberg](https://github.com/alexrothenberg).
+Special thanks to [@alexrothenberg](https://github.com/alexrothenberg) for some
+ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
 
 ## Contributing
 
