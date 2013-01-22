@@ -1,49 +1,44 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span5">
-      <h1>
-        Letters
-        <span class="pull-right">
-          <%= link_to letters_path, class: 'btn refresh' do %>
-            <i class="icon-refresh"></i>
-            Refresh
-          <% end %>
-          <%= link_to clear_letters_path, method: 'delete', confirm: 'Are you sure?', class: 'btn btn-danger' do %>
-            <i class="icon-trash icon-white"></i>
-            Clear
-          <% end %>
-        </span>
-      </h1>
-      <table class="table table-hover letter-opener" data-letters-path="<%= letters_path %>">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Sent at</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if first_letter = @letters.shift %>
-            <tr class="active">
-              <td>
-                <%= link_to(first_letter.id, letter_path(first_letter, style: 'rich'), target: 'mail') %>
-              </td>
-              <td><%= first_letter.sent_at %></td>
-            </tr>
-          <% end %>
-          <% @letters.each do |letter| %>
-            <tr>
-              <td>
-                <%= link_to(letter.id, letter_path(letter, style: 'rich'), target: 'mail') %>
-              </td>
-              <td><%= letter.sent_at %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="span7">
-      <h1>Content</h1>
-      <iframe name="mail" id="mail" src="<%= first_letter.present? ? letter_path(first_letter, style: 'rich') : 'about:blank' %>"></iframe>
-    </div>
-  </div>
+<div class="col left">
+  <h1>
+    Letters
+    <span class="pull-right">
+      <%= link_to letters_path, class: 'btn refresh' do %>
+        <i class="icon-refresh"></i>
+        Refresh
+      <% end %>
+      <%= link_to clear_letters_path, method: 'delete', confirm: 'Are you sure?', class: 'btn btn-danger' do %>
+        <i class="icon-trash icon-white"></i>
+        Clear
+      <% end %>
+    </span>
+  </h1>
+  <table class="table table-hover letter-opener" data-letters-path="<%= letters_path %>">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Sent at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if first_letter = @letters.shift %>
+        <tr class="active">
+          <td>
+            <%= link_to(first_letter.id, letter_path(first_letter, style: 'rich'), target: 'mail') %>
+          </td>
+          <td><%= first_letter.sent_at %></td>
+        </tr>
+      <% end %>
+      <% @letters.each do |letter| %>
+        <tr>
+          <td>
+            <%= link_to(letter.id, letter_path(letter, style: 'rich'), target: 'mail') %>
+          </td>
+          <td><%= letter.sent_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col right">
+  <iframe name="mail" id="mail" src="<%= first_letter.present? ? letter_path(first_letter, style: 'rich') : 'about:blank' %>"></iframe>
 </div>
