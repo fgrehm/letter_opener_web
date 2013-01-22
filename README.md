@@ -21,6 +21,27 @@ Your::Application.routes.draw do
 end
 ```
 
+If you are using [Vagrant](http://vagrantup.com), you might want to skip
+`letter_opener`'s `launchy` calls and avoid messages like these:
+
+```terminal
+12:33:42 web.1  | Failure in opening /vagrant/tmp/letter_opener/1358825621_ba83a22/rich.html
+with options {}: Unable to find a browser command. If this is unexpected, Please rerun with
+environment variable LAUNCHY_DEBUG=true or the '-d' commandline option and file a bug at
+https://github.com/copiousfreetime/launchy/issues/new
+```
+
+In that case (or if you just want to browse mails using the web interface), you
+can set `:letter_opener_web` as your delivery method on your
+`config/environments/development.rb`:
+
+```ruby
+  config.action_mailer.delivery_method = :letter_opener_web
+
+  # If not everyone on the team is using vagrant
+  config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+```
+
 ## Acknowledgements
 
 Special thanks to [@alexrothenberg](https://github.com/alexrothenberg) for some
