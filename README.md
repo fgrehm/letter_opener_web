@@ -57,6 +57,19 @@ Footnotes.setup do |config|
 end
 ```
 
+## Try it out
+
+There is a demo app built with [tiny-rails](https://github.com/fgrehm/tiny-rails)
+available for you to check out how the interface looks like. If you want to give
+a shot at it:
+
+```terminal
+git clone https://github.com/fgrehm/letter_opener_web
+cd letter_opener_web/demo
+bundle
+unicorn
+```
+
 ## Acknowledgements
 
 Special thanks to [@alexrothenberg](https://github.com/alexrothenberg) for some

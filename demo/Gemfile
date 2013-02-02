@@ -9,3 +9,8 @@ gem "actionmailer", "~> 3.2"
 gem "railties",     "~> 3.2"
 
 gem "letter_opener_web", path: '../'
+gem "actionmailer_inline_css"
+
+gem "rails-footnotes"
+
+gem "unicorn"

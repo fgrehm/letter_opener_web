@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LetterOpenerWeb Test APP</title>
+    <%= stylesheet_link_tag    "bootstrap.min" %>
+    <style>
+      body {
+        padding-top: 20px;
+      }
+
+      .alert {
+        margin-top: 20px;
+      }
+
+      h1, .footer {
+        text-align: center;
+      }
+
+      .icon-white {
+        background-image: url(<%=asset_path "glyphicons-halflings-white.png"%>);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>LetterOpenerWeb Test App</h1>
+
+      <div class="row">
+        <div class="span6 offset3">
+
+          <div class="well">
+            <form method="post" action="/">
+              <legend>Contact form</legend>
+              <div class="control-group">
+                <label class="control-label" for="email">Email</label>
+                <div class="controls">
+                  <input type="text" class="input-block-level" name="email">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="message">Message</label>
+                <div class="controls">
+                  <textarea class="input-block-level" name="message" rows="6"></textarea>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <button type="submit" class="btn btn-primary pull-right">
+                    <i class="icon-envelope icon-white"></i>
+                    Send mail
+                  </button>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </form>
+
+            <p class="footer">
+              <a href="/letter_opener" target="_blank">Click here</a>
+              to see sent mails
+            </p>
+          </div>
+
+          <% if flash.key?(:notice) %>
+            <div class="alert alert-success">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

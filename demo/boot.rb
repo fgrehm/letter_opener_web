@@ -20,7 +20,6 @@ class TinyRailsApp < Rails::Application
   config.autoload_paths << config.root
 
   config.middleware.delete "Rack::Lock"
-  config.middleware.delete "ActionDispatch::Flash"
   config.middleware.delete "ActionDispatch::BestStandardsSupport"
   config.middleware.use Rails::Rack::LogTailer, "log/#{Rails.env}.log"
 
@@ -30,6 +29,8 @@ class TinyRailsApp < Rails::Application
   # Enable asset pipeline
   config.assets.enabled = true
   config.assets.debug   = true
+
+  config.action_mailer.delivery_method = :letter_opener_web
 end
 
 require 'initializers' if File.exists?('initializers.rb')
@@ -37,6 +38,8 @@ require 'initializers' if File.exists?('initializers.rb')
 TinyRailsApp.initialize!
 
 TinyRailsApp.routes.draw do
-  mount LetterOpenerWeb::Engine, at: "/"
+  get   "/" => 'application#index'
+  post  "/" => 'application#send_mail'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
   match "/favicon.ico", :to => proc {|env| [200, {}, [""]] }
 end
