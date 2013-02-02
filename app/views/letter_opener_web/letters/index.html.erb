@@ -23,7 +23,7 @@
       <% if first_letter = @letters.shift %>
         <tr class="active">
           <td>
-            <%= link_to(first_letter.id, letter_path(first_letter, style: 'rich'), target: 'mail') %>
+            <%= link_to(first_letter.id, letter_path(first_letter, style: first_letter.default_style), target: 'mail') %>
           </td>
           <td><%= first_letter.sent_at %></td>
         </tr>
@@ -31,7 +31,7 @@
       <% @letters.each do |letter| %>
         <tr>
           <td>
-            <%= link_to(letter.id, letter_path(letter, style: 'rich'), target: 'mail') %>
+            <%= link_to(letter.id, letter_path(letter, style: letter.default_style), target: 'mail') %>
           </td>
           <td><%= letter.sent_at %></td>
         </tr>
@@ -40,5 +40,5 @@
   </table>
 </div>
 <div class="col right">
-  <iframe name="mail" id="mail" src="<%= first_letter.present? ? letter_path(first_letter, style: 'rich') : 'about:blank' %>"></iframe>
+  <iframe name="mail" id="mail" src="<%= first_letter.present? ? letter_path(first_letter, style: first_letter.default_style) : 'about:blank' %>"></iframe>
 </div>

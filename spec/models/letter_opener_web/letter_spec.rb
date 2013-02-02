@@ -50,6 +50,20 @@ MAIL
     it { should =~ /Plain text for 2222_2222/ }
   end
 
+  describe 'default style' do
+    let(:id) { '2222_2222' }
+    subject { described_class.new(id: id) }
+
+    it 'returns rich if rich text version is present' do
+      subject.default_style.should == 'rich'
+    end
+
+    it 'returns plain if rich text version is not present' do
+      File.stub(:exists? => false)
+      subject.default_style.should == 'plain'
+    end
+  end
+
   describe '.search' do
     let(:search_results) { described_class.search }
     let(:first_letter)   { search_results.first }

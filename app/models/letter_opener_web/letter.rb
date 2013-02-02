@@ -38,10 +38,20 @@ module LetterOpenerWeb
       id
     end
 
+    def default_style
+      style_exists?('rich') ?
+        'rich' :
+        'plain'
+    end
+
     private
 
     def read_file(style)
       File.read("#{letters_location}/#{id}/#{style}.html")
+    end
+
+    def style_exists?(style)
+      File.exists?("#{letters_location}/#{id}/#{style}.html")
     end
 
     def adjust_link_targets(contents)
