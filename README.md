@@ -21,8 +21,8 @@ Your::Application.routes.draw do
 end
 ```
 
-If you are using [Vagrant](http://vagrantup.com), you might want to skip
-`letter_opener`'s `launchy` calls and avoid messages like these:
+If you are running the app from a [Vagrant](http://vagrantup.com) box, you
+might want to skip `letter_opener`'s `launchy` calls and avoid messages like these:
 
 ```terminal
 12:33:42 web.1  | Failure in opening /vagrant/tmp/letter_opener/1358825621_ba83a22/rich.html
@@ -40,6 +40,21 @@ can set `:letter_opener_web` as your delivery method on your
 
   # If not everyone on the team is using vagrant
   config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+```
+
+## Usage with [rails-footnotes](https://github.com/josevalim/rails-footnotes)
+
+To prevent `rails-footnotes` from outputing debug information to your mails add
+the following to your `config/initializers/footnotes.rb`:
+
+```ruby
+Footnotes.setup do |config|
+  config.before do |controller, filter|
+    controller.class.name =~ /LetterOpenerWeb/ ?
+      filter.notes.clear :
+      filter.notes
+  end
+end
 ```
 
 ## Acknowledgements
