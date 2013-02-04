@@ -48,11 +48,14 @@ To prevent `rails-footnotes` from outputing debug information to your mails add
 the following to your `config/initializers/footnotes.rb`:
 
 ```ruby
+notes = Footnotes::Filter.notes
 Footnotes.setup do |config|
   config.before do |controller, filter|
-    controller.class.name =~ /LetterOpenerWeb/ ?
-      filter.notes.clear :
-      filter.notes
+    if controller.class.name =~ /LetterOpenerWeb/
+      filter.notes = []
+    else
+      filter.notes = notes
+    end
   end
 end
 ```
