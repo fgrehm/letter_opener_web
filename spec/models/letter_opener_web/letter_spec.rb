@@ -64,6 +64,23 @@ MAIL
     end
   end
 
+  describe 'attachments' do
+    let(:file)            { 'an-image.csv' }
+    let(:attachments_dir) { "#{location}/#{id}/attachments" }
+    let(:id)              { '1111_1111' }
+
+    subject { described_class.new(id: id) }
+
+    before do
+      FileUtils.mkdir_p(attachments_dir)
+      File.open("#{attachments_dir}/#{file}", 'w') { |f| f.puts 'csv,contents' }
+    end
+
+    it 'builds a hash with file name as key and full path as value' do
+      subject.attachments.should == { file => "#{attachments_dir}/#{file}" }
+    end
+  end
+
   describe '.search' do
     let(:search_results) { described_class.search }
     let(:first_letter)   { search_results.first }

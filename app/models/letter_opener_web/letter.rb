@@ -44,14 +44,24 @@ module LetterOpenerWeb
         'plain'
     end
 
+    def attachments
+      @attachments ||= Dir["#{base_dir}/attachments/*"].each_with_object({}) do |file, hash|
+        hash[File.basename(file)] = File.expand_path(file)
+      end
+    end
+
     private
 
+    def base_dir
+      "#{letters_location}/#{id}"
+    end
+
     def read_file(style)
-      File.read("#{letters_location}/#{id}/#{style}.html")
+      File.read("#{base_dir}/#{style}.html")
     end
 
     def style_exists?(style)
-      File.exists?("#{letters_location}/#{id}/#{style}.html")
+      File.exists?("#{base_dir}/#{style}.html")
     end
 
     def adjust_link_targets(contents)
