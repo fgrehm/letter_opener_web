@@ -14,7 +14,7 @@ module LetterOpenerWeb
     end
 
     def self.find(id)
-      new id: id
+      new :id => id
     end
 
     def self.destroy_all

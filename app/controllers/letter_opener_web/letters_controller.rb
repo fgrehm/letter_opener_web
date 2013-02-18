@@ -9,9 +9,9 @@ module LetterOpenerWeb
     def show
       letter = Letter.find(params[:id])
       text   = letter.send("#{params[:style]}_text").
-        gsub(/"plain\.html"/, "\"#{letter_path(id: letter.id, style: 'plain')}\"").
-        gsub(/"rich\.html"/, "\"#{letter_path(id: letter.id, style: 'rich')}\"")
-      render text: text
+        gsub(/"plain\.html"/, "\"#{letter_path(:id => letter.id, :style => 'plain')}\"").
+        gsub(/"rich\.html"/, "\"#{letter_path(:id => letter.id, :style => 'rich')}\"")
+      render :text => text
     end
 
     def attachment
