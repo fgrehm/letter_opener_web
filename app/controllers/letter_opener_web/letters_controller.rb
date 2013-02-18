@@ -14,6 +14,17 @@ module LetterOpenerWeb
       render text: text
     end
 
+    def attachment
+      letter   = Letter.find(params[:id])
+      filename = "#{params[:file]}.#{params[:format]}"
+
+      if file = letter.attachments[filename]
+        send_file(file, :filename => filename, :disposition => 'inline')
+      else
+        render :text => 'Attachment not found!', :status => 404
+      end
+    end
+
     def clear
       Letter.destroy_all
       redirect_to letters_path

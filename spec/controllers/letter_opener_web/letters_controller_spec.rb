@@ -47,6 +47,29 @@ describe LetterOpenerWeb::LettersController do
     end
   end
 
+  describe 'GET attachment' do
+    let(:id)              { 'an-id' }
+    let(:attachment_path) { "path/to/attachment" }
+    let(:file_name)       { 'image.jpg' }
+    let(:letter)          { mock(:letter, attachments: { file_name => attachment_path}, id: id) }
+
+    before do
+      LetterOpenerWeb::Letter.stub(find: letter)
+      controller.stub(:send_file) { controller.render :nothing => true }
+    end
+
+    it 'sends the file as an inline attachment' do
+      controller.should_receive(:send_file).with(attachment_path, :filename => file_name, :disposition => 'inline')
+      get :attachment, id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..-1]
+      response.status.should == 200
+    end
+
+    it "throws a 404 if attachment file can't be found" do
+      get :attachment, id: id, file: 'unknown', format: 'woot'
+      response.status.should == 404
+    end
+  end
+
   describe 'DELETE clear' do
     it 'removes all letters' do
       LetterOpenerWeb::Letter.should_receive(:destroy_all)
