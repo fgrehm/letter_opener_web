@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def send_mail
-    ContactMailer.new_message(params[:email], params[:message]).deliver
+    ContactMailer.new_message(params[:email], params[:message], params[:attachment]).deliver
     redirect_to '/', :notice => 'Email sent successfully, please check letter_opener_web inbox.'
   end
 end
@@ -18,8 +18,11 @@ class ContactMailer < ActionMailer::Base
           :from          => 'no-reply@letter_opener_web.com',
           :template_path => '.'
 
-  def new_message(from, message)
+  def new_message(from, message, attachment)
     @from, @message = from, message
+    if attachment.present?
+      attachments[attachment.original_filename] = attachment.tempfile.read
+    end
     mail(:subject => 'Testing letter_opener_web', :template_name => 'new_message')
   end
 end
