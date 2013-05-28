@@ -21,6 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'letter_opener', '~> 1.0'
 
   gem.add_development_dependency 'rspec-rails', '~> 2.0'
-  gem.add_development_dependency 'shoulda-matchers'
+  gem.add_development_dependency 'shoulda-matchers', '1.5.6'
   gem.add_development_dependency 'combustion', '~> 0.3.1'
 end
