@@ -9,7 +9,7 @@ browsing sent emails.
 
 First add the gem to your development environment and run the `bundle` command to install it.
 
-    gem 'letter_opener_web', '~> 1.0', :group => :development
+    gem 'letter_opener_web', '~> 1.0.3', :group => :development
 
 ## Usage
 
