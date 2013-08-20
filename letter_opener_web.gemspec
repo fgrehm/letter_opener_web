@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'rails', '~> 3.2'
+  gem.add_dependency 'rails', '>= 3.2'
   gem.add_dependency 'letter_opener', '~> 1.0'
 
   gem.add_development_dependency 'rspec-rails', '~> 2.0'
