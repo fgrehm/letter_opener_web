@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Gives letter_opener an interface for browsing sent emails}
   gem.summary       = gem.description
   gem.homepage      = "https://github.com/fgrehm/letter_opener_web"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
