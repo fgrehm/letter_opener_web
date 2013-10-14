@@ -6,7 +6,7 @@
         <i class="icon-refresh"></i>
         Refresh
       <% end %>
-      <%= link_to clear_letters_path, method: 'delete', confirm: 'Are you sure?', class: 'btn btn-danger' do %>
+      <%= link_to clear_letters_path, method: 'delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
         <i class="icon-trash icon-white"></i>
         Clear
       <% end %>
