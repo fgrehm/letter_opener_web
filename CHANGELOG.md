@@ -1,3 +1,7 @@
+## [1.1.1](https://github.com/fgrehm/letter_opener_web/compare/v1.1.0...v1.1.1) (Oct 15, 2013)
+
+  - Fix deprecation warning on Rails 4 [#17](https://github.com/fgrehm/letter_opener_web/pull/17)
+
 ## [1.1.0](https://github.com/fgrehm/letter_opener_web/compare/v1.0.3...v1.1.0) (Aug 29, 2013)
 
   - "Relax" Rails dependency in order to use the gem on 4.0 [#15](https://github.com/fgrehm/letter_opener_web/issues/15)
