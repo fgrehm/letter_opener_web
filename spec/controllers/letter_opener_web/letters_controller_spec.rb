@@ -6,7 +6,9 @@ describe LetterOpenerWeb::LettersController do
       LetterOpenerWeb::Letter.stub(:search => :all_letters)
       get :index
     end
-    it { should assign_to(:letters).with(:all_letters) }
+    it 'should assign all letters to @letters' do
+      assigns[:letters].should == :all_letters
+    end
   end
 
   describe 'GET show' do
