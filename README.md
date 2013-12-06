@@ -87,3 +87,5 @@ ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fgrehm/letter_opener_web/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
