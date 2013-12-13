@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    letter_opener_web (1.1.1)
+    letter_opener_web (1.1.2)
       letter_opener (~> 1.0)
       rails (>= 3.2)
 
