@@ -74,6 +74,7 @@ module LetterOpenerWeb
         xml        = REXML::Document.new(fixed_link).root
         unless xml.attributes['href'] =~ /(plain|rich).html/
           xml.attributes['target'] = '_blank'
+          xml.add_text('') unless xml.text
           contents.gsub!(link, xml.to_s)
         end
       end
