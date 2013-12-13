@@ -1,3 +1,6 @@
+## [1.1.3](https://github.com/fgrehm/letter_opener_web/compare/v1.1.2...master) (unreleased)
+
+
 ## [1.1.2](https://github.com/fgrehm/letter_opener_web/compare/v1.1.1...v1.1.2) (Dec 12, 2013)
 
   - Nicely handle empty links [#18](https://github.com/fgrehm/letter_opener_web/pull/18)
