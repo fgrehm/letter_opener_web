@@ -40,12 +40,10 @@ MAIL
     it { should =~ /Rich text for 1111_1111/ }
 
     it 'changes links to show up on a new window' do
-      return pending 'This spec if failing randomly on ruby 1.8' if RUBY_VERSION =~ /^1.8/
       subject.should include("<a href='a-link.html' target='_blank'>\n  <img src='an-image.jpg'/>\n  Link text\n</a>")
     end
 
     it 'always rewrites links with a closing tag rather than making them selfclosing' do
-      return pending 'This spec if failing randomly on ruby 1.8' if RUBY_VERSION =~ /^1.8/
       subject.should include("<a class='blank' href='example.html' target='_blank'></a>")
     end
   end
