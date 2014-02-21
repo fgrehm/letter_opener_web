@@ -1,5 +1,6 @@
-## [1.1.3](https://github.com/fgrehm/letter_opener_web/compare/v1.1.2...master) (unreleased)
+## [1.1.3](https://github.com/fgrehm/letter_opener_web/compare/v1.1.2...master) (Feb 21, 2014)
 
+  - Include assets into `precompile` list [#21](https://github.com/fgrehm/letter_opener_web/pull/21)
 
 ## [1.1.2](https://github.com/fgrehm/letter_opener_web/compare/v1.1.1...v1.1.2) (Dec 12, 2013)
 
