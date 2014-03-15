@@ -50,6 +50,10 @@ module LetterOpenerWeb
       end
     end
 
+    def delete
+      FileUtils.rm_rf("#{letters_location}/#{self.id}")
+    end
+
     private
 
     def base_dir
