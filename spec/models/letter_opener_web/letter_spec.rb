@@ -116,4 +116,16 @@ MAIL
       Dir["#{location}/**/*"].should be_empty
     end
   end
+
+  describe '#delete' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(:id => id).delete }
+
+    it'removes the letter with given id' do
+      subject
+      directories = Dir["#{location}/*"]
+      directories.count.should eql(1)
+      directories.first.should_not match(id)
+    end
+  end
 end
