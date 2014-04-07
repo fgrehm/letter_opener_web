@@ -1,6 +1,5 @@
-//= require jquery-1.8.3.min
-//= require jquery_ujs
-//= require_tree .
+//= require letter_opener_web/jquery-1.8.3.min
+//= require letter_opener_web/jquery_ujs
 
 jQuery(function($) {
   $('.letter-opener').on('click', 'tr', function() {
