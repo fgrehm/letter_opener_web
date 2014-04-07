@@ -1,4 +1,4 @@
-## [1.2.0](https://github.com/fgrehm/letter_opener_web/compare/v1.1.3...master) (unreleased)
+## [1.2.0](https://github.com/fgrehm/letter_opener_web/compare/v1.1.3...v1.2.0) (Apr 07, 2014)
 
   - Add support for removing a single email [#23](https://github.com/fgrehm/letter_opener_web/pull/23)
   - Move vendored assets into the `letter_opener_web` folder [#24](https://github.com/fgrehm/letter_opener_web/issues/24)
