@@ -1,4 +1,10 @@
-## [1.1.3](https://github.com/fgrehm/letter_opener_web/compare/v1.1.2...master) (Feb 21, 2014)
+## [1.2.0](https://github.com/fgrehm/letter_opener_web/compare/v1.1.3...master) (unreleased)
+
+  - Add support for removing a single email [#23](https://github.com/fgrehm/letter_opener_web/pull/23)
+  - Move vendored assets into the `letter_opener_web` folder [#24](https://github.com/fgrehm/letter_opener_web/issues/24)
+  - Avoid matching `<address>` when changing email links to open on new tabs [#22](https://github.com/fgrehm/letter_opener_web/pull/22)
+
+## [1.1.3](https://github.com/fgrehm/letter_opener_web/compare/v1.1.2...v1.1.3) (Feb 21, 2014)
 
   - Include assets into `precompile` list [#21](https://github.com/fgrehm/letter_opener_web/pull/21)
 
