@@ -73,7 +73,7 @@ module LetterOpenerWeb
       # "complete" (as in they have the whole <html> structure) and letter_opener
       # prepends some information about the mail being sent, making REXML
       # complain about it
-      contents.scan(/<a[^>]+>(?:.|\s)*?<\/a>/).each do |link|
+      contents.scan(/<a\s[^>]+>(?:.|\s)*?<\/a>/).each do |link|
         fixed_link = fix_link_html(link)
         xml        = REXML::Document.new(fixed_link).root
         unless xml.attributes['href'] =~ /(plain|rich).html/
