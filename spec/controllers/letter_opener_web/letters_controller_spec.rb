@@ -83,4 +83,12 @@ describe LetterOpenerWeb::LettersController do
       response.should redirect_to(letters_path)
     end
   end
+
+  describe 'DELETE destroy' do
+    let(:id) { 'an-id' }
+    it 'removes the selected letter' do
+      LetterOpenerWeb::Letter.any_instance.should_receive(:delete)
+      delete :destroy, :id => id, :use_route => :letter_opener_web
+    end
+  end
 end

@@ -29,5 +29,11 @@ module LetterOpenerWeb
       Letter.destroy_all
       redirect_to letters_path
     end
+
+    def destroy
+      letter = Letter.find(params[:id])
+      letter.delete
+      redirect_to letters_path
+    end
   end
 end
