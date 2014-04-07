@@ -5,9 +5,8 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-group :devonly do
-  gem 'debugger'
-  gem 'rb-inotify', '~> 0.8.8'
+group :development do
+  gem 'rb-inotify'
   gem 'guard'
   gem 'guard-rspec'
 end

@@ -41,20 +41,12 @@ GEM
       mocha (~> 0.13.2)
     builder (3.0.4)
     coderay (1.0.8)
-    columnize (0.3.6)
     combustion (0.3.3)
       rails (>= 3.0.0)
       thor (>= 0.14.6)
-    debugger (1.3.1)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.8)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.8)
     diff-lcs (1.1.3)
     erubis (2.7.0)
-    ffi (1.4.0)
+    ffi (1.9.3)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -112,7 +104,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.3)
-    rb-inotify (0.8.8)
+    rb-inotify (0.9.3)
       ffi (>= 0.5.0)
     rdoc (3.12.1)
       json (~> 1.4)
@@ -153,10 +145,9 @@ PLATFORMS
 
 DEPENDENCIES
   combustion (~> 0.3.1)
-  debugger
   guard
   guard-rspec
   letter_opener_web!
-  rb-inotify (~> 0.8.8)
+  rb-inotify
   rspec-rails (~> 2.0)
   shoulda-matchers (= 1.5.6)

@@ -1,6 +1,6 @@
 # letter_opener_web
 
-[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.png?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web)
+[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.png?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web) [![Gem Version](https://badge.fury.io/rb/letter_opener_web.png)](http://badge.fury.io/rb/letter_opener_web) [![Code Climate](https://codeclimate.com/github/fgrehm/letter_opener_web.png)](https://codeclimate.com/github/fgrehm/letter_opener_web) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/)
 
 Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
 browsing sent emails.
@@ -44,23 +44,6 @@ can set `:letter_opener_web` as your delivery method on your
   config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
 ```
 
-## Usage with [rails-footnotes](https://github.com/josevalim/rails-footnotes)
-
-To prevent `rails-footnotes` from outputing debug information to your mails add
-the following to your `config/initializers/footnotes.rb`:
-
-```ruby
-notes = Footnotes::Filter.notes
-Footnotes.setup do |config|
-  config.before do |controller, filter|
-    if controller.class.name =~ /LetterOpenerWeb/
-      filter.notes = []
-    else
-      filter.notes = notes
-    end
-  end
-end
-```
 
 ## Try it out
 
@@ -75,10 +58,12 @@ bundle
 unicorn
 ```
 
+
 ## Acknowledgements
 
 Special thanks to [@alexrothenberg](https://github.com/alexrothenberg) for some
 ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
+
 
 ## Contributing
 
@@ -87,5 +72,3 @@ ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fgrehm/letter_opener_web/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
