@@ -13,6 +13,7 @@ Rich text for #{mail_id}
 </a>
 <a href='fooo.html'>Bar</a>
 <a href="example.html" class="blank"></a>
+<address><a href="inside-address.html">inside address</a></address>
 MAIL
   end
 
