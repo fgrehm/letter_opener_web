@@ -17,8 +17,8 @@ MAIL
   end
 
   before :each do
-    described_class.stub(:letters_location).and_return(location)
-    described_class.any_instance.stub(:letters_location).and_return(location)
+    allow(described_class).to receive(:letters_location).and_return(location)
+    allow_any_instance_of(described_class).to receive(:letters_location).and_return(location)
 
     ['1111_1111', '2222_2222'].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
@@ -40,11 +40,11 @@ MAIL
     it { should =~ /Rich text for 1111_1111/ }
 
     it 'changes links to show up on a new window' do
-      subject.should include("<a href='a-link.html' target='_blank'>\n  <img src='an-image.jpg'/>\n  Link text\n</a>")
+      expect(subject).to include("<a href='a-link.html' target='_blank'>\n  <img src='an-image.jpg'/>\n  Link text\n</a>")
     end
 
     it 'always rewrites links with a closing tag rather than making them selfclosing' do
-      subject.should include("<a class='blank' href='example.html' target='_blank'></a>")
+      expect(subject).to include("<a class='blank' href='example.html' target='_blank'></a>")
     end
   end
 
@@ -60,12 +60,12 @@ MAIL
     subject { described_class.new(:id => id) }
 
     it 'returns rich if rich text version is present' do
-      subject.default_style.should == 'rich'
+      expect(subject.default_style).to eq('rich')
     end
 
     it 'returns plain if rich text version is not present' do
       File.stub(:exists? => false)
-      subject.default_style.should == 'plain'
+      expect(subject.default_style).to eq('plain')
     end
   end
 
@@ -82,7 +82,7 @@ MAIL
     end
 
     it 'builds a hash with file name as key and full path as value' do
-      subject.attachments.should == { file => "#{attachments_dir}/#{file}" }
+      expect(subject.attachments).to eq({ file => "#{attachments_dir}/#{file}" })
     end
   end
 
@@ -92,12 +92,12 @@ MAIL
     let(:last_letter)    { search_results.last }
 
     before do
-      File.stub(:mtime).with("#{location}/1111_1111").and_return(Date.today - 1.day)
-      File.stub(:mtime).with("#{location}/2222_2222").and_return(Date.today)
+      allow(File).to receive(:mtime).with("#{location}/1111_1111").and_return(Date.today - 1.day)
+      allow(File).to receive(:mtime).with("#{location}/2222_2222").and_return(Date.today)
     end
 
     it 'returns a list of ordered letters' do
-      first_letter.sent_at.should > last_letter.sent_at
+      expect(first_letter.sent_at).to be > last_letter.sent_at
     end
   end
 
@@ -106,14 +106,14 @@ MAIL
     let(:letter) { described_class.find(id) }
 
     it 'returns a letter with id set' do
-      letter.id.should == id
+      expect(letter.id).to eq(id)
     end
   end
 
   describe '.destroy_all' do
     it 'removes all letters' do
       described_class.destroy_all
-      Dir["#{location}/**/*"].should be_empty
+      expect(Dir["#{location}/**/*"]).to be_empty
     end
   end
 
@@ -124,8 +124,8 @@ MAIL
     it'removes the letter with given id' do
       subject
       directories = Dir["#{location}/*"]
-      directories.count.should eql(1)
-      directories.first.should_not match(id)
+      expect(directories.count).to eql(1)
+      expect(directories.first).not_to match(id)
     end
   end
 end
