@@ -55,8 +55,10 @@ a shot at it:
 git clone https://github.com/fgrehm/letter_opener_web
 cd letter_opener_web/demo
 bundle
-unicorn
+bundle exec unicorn
 ```
+
+![Screenshot](demo/screenshot.png)
 
 
 ## Acknowledgements
