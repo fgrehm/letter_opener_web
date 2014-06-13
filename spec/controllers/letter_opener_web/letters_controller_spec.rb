@@ -3,7 +3,7 @@ require 'spec_helper'
 describe LetterOpenerWeb::LettersController do
   describe 'GET index' do
     before do
-      LetterOpenerWeb::Letter.stub(:search => :all_letters)
+      allow(LetterOpenerWeb::Letter).to receive_messages(:search => :all_letters)
       get :index
     end
     it 'should assign all letters to @letters' do
@@ -19,7 +19,7 @@ describe LetterOpenerWeb::LettersController do
     let(:letter)     { double(:letter, :rich_text => rich_text, :plain_text => plain_text, :id => id) }
 
     before do
-      LetterOpenerWeb::Letter.stub(:find => letter)
+      allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
     end
 
     context 'rich text version' do
@@ -56,7 +56,7 @@ describe LetterOpenerWeb::LettersController do
     let(:letter)          { double(:letter, :attachments => { file_name => attachment_path}, :id => id) }
 
     before do
-      LetterOpenerWeb::Letter.stub(:find => letter)
+      allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
       allow(controller).to receive(:send_file) { controller.render :nothing => true }
     end
 

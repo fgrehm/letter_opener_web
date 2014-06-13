@@ -38,7 +38,7 @@ MAIL
     let(:id) { '1111_1111' }
     subject { described_class.new(:id => id).rich_text }
 
-    it { should =~ /Rich text for 1111_1111/ }
+    it { is_expected.to match(/Rich text for 1111_1111/) }
 
     it 'changes links to show up on a new window' do
       expect(subject).to include("<a href='a-link.html' target='_blank'>\n  <img src='an-image.jpg'/>\n  Link text\n</a>")
@@ -53,7 +53,7 @@ MAIL
     let(:id) { '2222_2222' }
     subject { described_class.new(:id => id).plain_text }
 
-    it { should =~ /Plain text for 2222_2222/ }
+    it { is_expected.to match(/Plain text for 2222_2222/) }
   end
 
   describe 'default style' do
@@ -65,7 +65,7 @@ MAIL
     end
 
     it 'returns plain if rich text version is not present' do
-      File.stub(:exists? => false)
+      allow(File).to receive_messages(:exists? => false)
       expect(subject.default_style).to eq('plain')
     end
   end
