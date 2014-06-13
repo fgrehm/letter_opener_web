@@ -1,3 +1,7 @@
+## [1.2.1](https://github.com/fgrehm/letter_opener_web/compare/v1.2.0...v1.2.1) (Apr 07, 2014)
+
+  - Improve Rails 3 compatibility [#26](https://github.com/fgrehm/letter_opener_web/pull/26) / [#27](https://github.com/fgrehm/letter_opener_web/pull/27)
+
 ## [1.2.0](https://github.com/fgrehm/letter_opener_web/compare/v1.1.3...v1.2.0) (Apr 07, 2014)
 
   - Add support for removing a single email [#23](https://github.com/fgrehm/letter_opener_web/pull/23)
