@@ -5,6 +5,8 @@
 Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
 browsing sent emails.
 
+Check out http://letter-opener-web.herokuapp.com to see it in action.
+
 ## Installation
 
 First add the gem to your development environment and run the `bundle` command to install it.
@@ -43,22 +45,6 @@ can set `:letter_opener_web` as your delivery method on your
   # If not everyone on the team is using vagrant
   config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
 ```
-
-
-## Try it out
-
-There is a demo app built with [tiny-rails](https://github.com/fgrehm/tiny-rails)
-available for you to check out how the interface looks like. If you want to give
-a shot at it:
-
-```terminal
-git clone https://github.com/fgrehm/letter_opener_web
-cd letter_opener_web/demo
-bundle
-bundle exec unicorn
-```
-
-![Screenshot](demo/screenshot.png)
 
 
 ## Acknowledgements

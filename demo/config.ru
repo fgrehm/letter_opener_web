@@ -1,2 +1,0 @@
-require './boot'
-run TinyRailsApp
