@@ -20,6 +20,7 @@ describe LetterOpenerWeb::LettersController do
 
     before do
       allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
+      allow(letter).to receive_messages(:exists? => true)
     end
 
     context 'rich text version' do
@@ -58,6 +59,7 @@ describe LetterOpenerWeb::LettersController do
     before do
       allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
       allow(controller).to receive(:send_file) { controller.render :nothing => true }
+      allow(letter).to receive_messages(:exists? => true)
     end
 
     it 'sends the file as an inline attachment' do
@@ -87,6 +89,7 @@ describe LetterOpenerWeb::LettersController do
   describe 'DELETE destroy' do
     let(:id) { 'an-id' }
     it 'removes the selected letter' do
+      allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:exists?).and_return(true)
       expect_any_instance_of(LetterOpenerWeb::Letter).to receive(:delete)
       delete :destroy, :id => id, :use_route => :letter_opener_web
     end

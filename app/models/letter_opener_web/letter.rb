@@ -54,6 +54,10 @@ module LetterOpenerWeb
       FileUtils.rm_rf("#{letters_location}/#{self.id}")
     end
 
+    def exists?
+      File.exists?(base_dir)
+    end
+
     private
 
     def base_dir
