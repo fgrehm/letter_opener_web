@@ -18,13 +18,12 @@ describe LetterOpenerWeb::LettersController do
     let(:plain_text) { "plain text href=\"rich.html\"" }
     let(:letter)     { double(:letter, :rich_text => rich_text, :plain_text => plain_text, :id => id) }
 
-    before do
-      allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
-      allow(letter).to receive_messages(:exists? => true)
-    end
-
     context 'rich text version' do
-      before { get :show, :id => id, :style => 'rich' }
+      before do
+        allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
+        allow(letter).to receive_messages(:exists? => true)
+        get :show, :id => id, :style => 'rich'
+      end
 
       it "returns letter's rich text contents" do
         expect(response.body).to match(/^rich text/)
@@ -37,7 +36,11 @@ describe LetterOpenerWeb::LettersController do
     end
 
     context 'plain text version' do
-      before { get :show, :id => id, :style => 'plain' }
+      before do 
+        allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
+        allow(letter).to receive_messages(:exists? => true)
+        get :show, :id => id, :style => 'plain'
+      end
 
       it "returns letter's plain text contents" do
         expect(response.body).to match(/^plain text/)
@@ -46,6 +49,13 @@ describe LetterOpenerWeb::LettersController do
       it 'fixes rich text link' do
         expect(response.body).not_to match(/href="rich.html"/)
         expect(response.body).to match(/href="#{Regexp.escape letter_path(:id => letter.id, :style => 'rich')}"/)
+      end
+    end
+
+    context 'with wrong parameters' do 
+      it 'should return 404 when invalid id given' do 
+        get :show, :id => id, :style => 'rich'
+        expect(response.status).to eq(404)
       end
     end
   end

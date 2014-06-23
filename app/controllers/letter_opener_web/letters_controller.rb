@@ -47,7 +47,7 @@ module LetterOpenerWeb
     def load_letter
       if params[:id]
         @letter = Letter.find(params[:id])
-        render :nothing => true unless @letter.exists?
+        render :nothing => true, :status => 404 unless @letter.exists?
       end
     end
   end
