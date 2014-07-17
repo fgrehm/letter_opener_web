@@ -18,6 +18,7 @@ module LetterOpenerWeb
         letter_opener_web/application.css
         letter_opener_web/glyphicons-halflings.png
         letter_opener_web/glyphicons-halflings-white.png
+        letter_opener_web/blue-dot.ico
       )
     end
   end
