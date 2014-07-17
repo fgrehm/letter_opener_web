@@ -11,7 +11,9 @@ Check out http://letter-opener-web.herokuapp.com to see it in action.
 
 First add the gem to your development environment and run the `bundle` command to install it.
 
-    gem 'letter_opener_web', '~> 1.2.0', :group => :development
+```ruby
+gem 'letter_opener_web', '~> 1.2.0', :group => :development
+```
 
 ## Usage
 
@@ -25,7 +27,11 @@ Your::Application.routes.draw do
 end
 ```
 
-If you are running the app from a [Vagrant](http://vagrantup.com) box, you
+And make sure you have [`:letter_opener` delivery method](https://github.com/ryanb/letter_opener#rails-setup)
+configured for your app. Then visit `http://localhost:3000/letter_opener` after
+sending an email and have fun.
+
+If you are running the app from a [Vagrant](http://vagrantup.com) machine, you
 might want to skip `letter_opener`'s `launchy` calls and avoid messages like these:
 
 ```terminal
@@ -40,12 +46,34 @@ can set `:letter_opener_web` as your delivery method on your
 `config/environments/development.rb`:
 
 ```ruby
-  config.action_mailer.delivery_method = :letter_opener_web
+config.action_mailer.delivery_method = :letter_opener_web
 
-  # If not everyone on the team is using vagrant
-  config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+# If not everyone on the team is using vagrant
+config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
 ```
 
+## Usage on Heroku
+
+Some people use this gem on staging environments on Heroku and to set that up
+is just a matter of moving the gem out of the `development` group and enabling
+the route for all environments on your `routes.rb`.
+
+In order words, your `Gemfile` will have:
+
+```ruby
+gem 'letter_opener_web', '~> 1.2.0'
+```
+
+And your `routes.rb`:
+
+```ruby
+Your::Application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+end
+```
+
+You might also want to have a look at the sources for the [demo](http://letter-opener-web.herokuapp.com)
+available at https://github.com/fgrehm/letter_opener_web_demo.
 
 ## Acknowledgements
 
