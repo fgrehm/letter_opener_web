@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/fgrehm/letter_opener_web/compare/v1.2.1...v1.2.2) (Jul 17, 2014)
+
+  - Precompile glyphicons [#30](https://github.com/fgrehm/letter_opener_web/pull/30)
+  - Display letters count on the favicon [#29](https://github.com/fgrehm/letter_opener_web/pull/29)
+  - Validate params passed in to the LettersController and return a 404 in case an email can't be found [#28](https://github.com/fgrehm/letter_opener_web/pull/28)
+
 ## [1.2.1](https://github.com/fgrehm/letter_opener_web/compare/v1.2.0...v1.2.1) (Apr 07, 2014)
 
   - Improve Rails 3 compatibility [#26](https://github.com/fgrehm/letter_opener_web/pull/26) / [#27](https://github.com/fgrehm/letter_opener_web/pull/27)
