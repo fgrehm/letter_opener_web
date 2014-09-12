@@ -1,4 +1,4 @@
-## [1.2.3](https://github.com/fgrehm/letter_opener_web/compare/v1.2.2...v1.2.3) (Jul 17, 2014)
+## [1.2.3](https://github.com/fgrehm/letter_opener_web/compare/v1.2.2...v1.2.3) (Sep 12, 2014)
 
   - Fix exception with `sprockets-rails` >= `2.1.4` [#32](https://github.com/fgrehm/letter_opener_web/issues/32) / [#33](https://github.com/fgrehm/letter_opener_web/pull/33)
 
