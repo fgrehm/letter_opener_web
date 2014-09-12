@@ -1,3 +1,7 @@
+## [1.2.3](https://github.com/fgrehm/letter_opener_web/compare/v1.2.2...v1.2.3) (Jul 17, 2014)
+
+  - Fix exception with `sprockets-rails` >= `2.1.4` [#32](https://github.com/fgrehm/letter_opener_web/issues/32) / [#33](https://github.com/fgrehm/letter_opener_web/pull/33)
+
 ## [1.2.2](https://github.com/fgrehm/letter_opener_web/compare/v1.2.1...v1.2.2) (Jul 17, 2014)
 
   - Precompile glyphicons [#30](https://github.com/fgrehm/letter_opener_web/pull/30)
