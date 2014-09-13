@@ -29,7 +29,7 @@ module LetterOpenerWeb
     def plain_text
       @plain_text ||= read_file(:plain)
       if use_link_adjustment
-        @plain_text ||= adjust_link_targets @plain_text
+        @plain_text = adjust_link_targets @plain_text
       end
     end
 
@@ -38,7 +38,10 @@ module LetterOpenerWeb
     end
 
     def rich_text
-      @rich_text ||= adjust_link_targets read_file(:rich)
+      @rich_text ||= read_file(:rich)
+      if use_link_adjustment
+        @rich_text = adjust_link_targets read_file(:rich)
+      end
     end
 
     def to_param
