@@ -12,10 +12,6 @@ module LetterOpenerWeb
       ActionMailer::Base.add_delivery_method :letter_opener_web, LetterOpenerWeb::DeliveryMethod, :location => Rails.root.join('tmp', 'letter_opener')
     end
 
-    initializer 'letter_opener_web.use_link_adjustment' do
-      Rails.configuration.use_link_adjustment = true
-    end
-
     initializer 'assets' do
       Rails.application.config.assets.precompile += %w(
         letter_opener_web/application.js
