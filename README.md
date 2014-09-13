@@ -50,6 +50,9 @@ config.action_mailer.delivery_method = :letter_opener_web
 
 # If not everyone on the team is using vagrant
 config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+
+# If you receive errors from REXML parsing your HTML emails, you can use the following additional setting
+config.use_link_adjustment = false
 ```
 
 ## Usage on Heroku
