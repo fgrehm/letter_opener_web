@@ -22,16 +22,28 @@ module LetterOpenerWeb
     end
 
     def initialize(params)
-      @id      = params.fetch(:id)
+      @id = params.fetch(:id)
       @sent_at = params[:sent_at]
     end
 
     def plain_text
-      @plain_text ||= adjust_link_targets read_file(:plain)
+      @plain_text ||= read_file(:plain)
+      if use_link_adjustment
+        @plain_text = adjust_link_targets @plain_text
+      end
+      @plain_text
+    end
+
+    def use_link_adjustment
+      Rails.configuration.use_link_adjustment
     end
 
     def rich_text
-      @rich_text ||= adjust_link_targets read_file(:rich)
+      @rich_text ||= read_file(:rich)
+      if use_link_adjustment
+        @rich_text = adjust_link_targets read_file(:rich)
+      end
+      @rich_text
     end
 
     def to_param
@@ -40,8 +52,8 @@ module LetterOpenerWeb
 
     def default_style
       style_exists?('rich') ?
-        'rich' :
-        'plain'
+          'rich' :
+          'plain'
     end
 
     def attachments
@@ -79,7 +91,7 @@ module LetterOpenerWeb
       # complain about it
       contents.scan(/<a\s[^>]+>(?:.|\s)*?<\/a>/).each do |link|
         fixed_link = fix_link_html(link)
-        xml        = REXML::Document.new(fixed_link).root
+        xml = REXML::Document.new(fixed_link).root
         unless xml.attributes['href'] =~ /(plain|rich).html/
           xml.attributes['target'] = '_blank'
           xml.add_text('') unless xml.text
