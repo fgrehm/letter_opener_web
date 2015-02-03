@@ -36,7 +36,7 @@ describe LetterOpenerWeb::LettersController do
     end
 
     context 'plain text version' do
-      before do 
+      before do
         allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
         allow(letter).to receive_messages(:exists? => true)
         get :show, :id => id, :style => 'plain'
@@ -52,8 +52,8 @@ describe LetterOpenerWeb::LettersController do
       end
     end
 
-    context 'with wrong parameters' do 
-      it 'should return 404 when invalid id given' do 
+    context 'with wrong parameters' do
+      it 'should return 404 when invalid id given' do
         get :show, :id => id, :style => 'rich'
         expect(response.status).to eq(404)
       end
@@ -98,6 +98,7 @@ describe LetterOpenerWeb::LettersController do
 
   describe 'DELETE destroy' do
     let(:id) { 'an-id' }
+
     it 'removes the selected letter' do
       allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:exists?).and_return(true)
       expect_any_instance_of(LetterOpenerWeb::Letter).to receive(:delete)
