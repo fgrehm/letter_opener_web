@@ -1,3 +1,7 @@
+## [1.3.0](https://github.com/fgrehm/letter_opener_web/compare/v1.2.3...v1.3.0) (Feb 02, 2015)
+
+  - Depend on `railties` and `actionmailer` [#38](https://github.com/fgrehm/letter_opener_web/pull/38)
+
 ## [1.2.3](https://github.com/fgrehm/letter_opener_web/compare/v1.2.2...v1.2.3) (Sep 12, 2014)
 
   - Fix exception with `sprockets-rails` >= `2.1.4` [#32](https://github.com/fgrehm/letter_opener_web/issues/32) / [#33](https://github.com/fgrehm/letter_opener_web/pull/33)
