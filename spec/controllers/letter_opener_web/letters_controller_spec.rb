@@ -102,7 +102,7 @@ describe LetterOpenerWeb::LettersController do
     it 'removes the selected letter' do
       allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:exists?).and_return(true)
       expect_any_instance_of(LetterOpenerWeb::Letter).to receive(:delete)
-      delete :destroy, :id => id, :use_route => :letter_opener_web
+      delete :destroy, :id => id
     end
   end
 end

@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'combustion'
 Bundler.require :default, :test
 
-Combustion.initialize! :action_controller, :action_view, :sprockets, :action_mailer
+Combustion.initialize! :action_controller, :action_view, :action_mailer
 
 require 'rspec/rails'
 require 'shoulda-matchers'
