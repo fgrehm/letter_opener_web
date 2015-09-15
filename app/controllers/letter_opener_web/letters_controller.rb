@@ -18,7 +18,7 @@ module LetterOpenerWeb
 
     def attachment
       @letter = Letter.find(params[:id])
-      filename = "#{params[:file]}.#{params[:format]}"
+      filename = "#{params[:file]}"
 
       if file = @letter.attachments[filename]
         send_file(file, :filename => filename, :disposition => 'inline')
