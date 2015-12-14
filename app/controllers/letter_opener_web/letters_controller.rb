@@ -1,4 +1,5 @@
 require_dependency "letter_opener_web/application_controller"
+include LetterOpenerWeb::LettersHelper
 
 module LetterOpenerWeb
   class LettersController < ApplicationController
