@@ -7,6 +7,7 @@ Bundler.require :default, :test
 Combustion.initialize! :action_controller, :action_view, :action_mailer
 
 require 'rspec/rails'
+require 'rails-controller-testing'
 require 'shoulda-matchers'
 
 RSpec.configure do |config|
@@ -19,4 +20,10 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
+  end
 end
