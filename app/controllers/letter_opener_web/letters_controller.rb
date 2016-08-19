@@ -2,8 +2,8 @@ require_dependency "letter_opener_web/application_controller"
 
 module LetterOpenerWeb
   class LettersController < ApplicationController
-    before_filter :check_style, :only => [:show]
-    before_filter :load_letter, :only => [:show, :attachment, :destroy]
+    before_action :check_style, :only => [:show]
+    before_action :load_letter, :only => [:show, :attachment, :destroy]
 
     def index
       @letters = Letter.search
@@ -13,7 +13,7 @@ module LetterOpenerWeb
       text = @letter.send("#{params[:style]}_text").
         gsub(/"plain\.html"/, "\"#{LetterOpenerWeb.railtie_routes_url_helpers.letter_path(:id => @letter.id, :style => 'plain')}\"").
         gsub(/"rich\.html"/, "\"#{LetterOpenerWeb.railtie_routes_url_helpers.letter_path(:id => @letter.id, :style => 'rich')}\"")
-      render :text => text
+      render :plain => text
     end
 
     def attachment
@@ -23,7 +23,7 @@ module LetterOpenerWeb
       if file = @letter.attachments[filename]
         send_file(file, :filename => filename, :disposition => 'inline')
       else
-        render :text => 'Attachment not found!', :status => 404
+        render :plain => 'Attachment not found!', :status => 404
       end
     end
 
@@ -47,7 +47,7 @@ module LetterOpenerWeb
     def load_letter
       if params[:id]
         @letter = Letter.find(params[:id])
-        render :nothing => true, :status => 404 unless @letter.exists?
+        head 404 unless @letter.exists?
       end
     end
   end

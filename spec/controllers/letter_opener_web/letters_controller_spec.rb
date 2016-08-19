@@ -22,7 +22,7 @@ describe LetterOpenerWeb::LettersController do
       before do
         allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
         allow(letter).to receive_messages(:exists? => true)
-        get :show, :id => id, :style => 'rich'
+        get :show, :params => { :id => id, :style => 'rich' }
       end
 
       it "returns letter's rich text contents" do
@@ -39,7 +39,7 @@ describe LetterOpenerWeb::LettersController do
       before do
         allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
         allow(letter).to receive_messages(:exists? => true)
-        get :show, :id => id, :style => 'plain'
+        get :show, :params => { :id => id, :style => 'plain' }
       end
 
       it "returns letter's plain text contents" do
@@ -54,7 +54,7 @@ describe LetterOpenerWeb::LettersController do
 
     context 'with wrong parameters' do
       it 'should return 404 when invalid id given' do
-        get :show, :id => id, :style => 'rich'
+        get :show, :params => { :id => id, :style => 'rich' }
         expect(response.status).to eq(404)
       end
     end
@@ -68,18 +68,18 @@ describe LetterOpenerWeb::LettersController do
 
     before do
       allow(LetterOpenerWeb::Letter).to receive_messages(:find => letter)
-      allow(controller).to receive(:send_file) { controller.render :nothing => true }
+      allow(controller).to receive(:send_file) { controller.head :ok }
       allow(letter).to receive_messages(:exists? => true)
     end
 
     it 'sends the file as an inline attachment' do
       expect(controller).to receive(:send_file).with(attachment_path, :filename => file_name, :disposition => 'inline')
-      get :attachment, :id => id, :file => file_name.gsub(/\.\w+/, ''), :format => File.extname(file_name)[1..-1]
+      get :attachment, :params => { :id => id, :file => file_name.gsub(/\.\w+/, ''), :format => File.extname(file_name)[1..-1] }
       expect(response.status).to eq(200)
     end
 
     it "throws a 404 if attachment file can't be found" do
-      get :attachment, :id => id, :file => 'unknown', :format => 'woot'
+      get :attachment, :params => { :id => id, :file => 'unknown', :format => 'woot' }
       expect(response.status).to eq(404)
     end
   end
@@ -102,7 +102,7 @@ describe LetterOpenerWeb::LettersController do
     it 'removes the selected letter' do
       allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:exists?).and_return(true)
       expect_any_instance_of(LetterOpenerWeb::Letter).to receive(:delete)
-      delete :destroy, :id => id
+      delete :destroy, :params => { :id => id }
     end
   end
 end

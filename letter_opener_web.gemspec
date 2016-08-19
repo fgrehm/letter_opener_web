@@ -18,11 +18,13 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'railties', '>= 3.2'
-  gem.add_dependency 'actionmailer', '>= 3.2'
+  gem.add_dependency 'railties', '>= 4'
+  gem.add_dependency 'actionmailer', '>= 4'
   gem.add_dependency 'letter_opener', '~> 1.0'
 
+  gem.add_development_dependency 'rails-controller-testing', '~> 1.0.0'
   gem.add_development_dependency 'rspec-rails', '~> 3.0'
   gem.add_development_dependency 'shoulda-matchers', '~> 2.5'
   gem.add_development_dependency 'combustion', '~> 0.5'
+  gem.add_development_dependency 'appraisal'
 end
