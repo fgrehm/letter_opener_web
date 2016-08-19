@@ -5,3 +5,5 @@ rvm:
   - 2.0.0
 sudo: false
 cache: bundler
+before_install:
+  - gem update bundler
