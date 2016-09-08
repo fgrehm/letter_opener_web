@@ -12,7 +12,7 @@ Check out http://letter-opener-web.herokuapp.com to see it in action.
 First add the gem to your development environment and run the `bundle` command to install it.
 
 ```ruby
-gem 'letter_opener_web', '~> 1.2.0', :group => :development
+gem 'letter_opener_web', :group => :development
 ```
 
 ## Usage
@@ -61,7 +61,7 @@ the route for all environments on your `routes.rb`.
 In order words, your `Gemfile` will have:
 
 ```ruby
-gem 'letter_opener_web', '~> 1.2.0'
+gem 'letter_opener_web'
 ```
 
 And your `routes.rb`:
