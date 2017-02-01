@@ -72,9 +72,29 @@ describe LetterOpenerWeb::LettersController do
       allow(letter).to receive_messages(:exists? => true)
     end
 
+    context 'when file name include dot symbol' do
+      let(:file_name) { 'attached.image.jpg' }
+
+      it 'sends the file as an inline attachment' do
+        expect(controller).to receive(:send_file).with(attachment_path, :filename => file_name, :disposition => 'inline')
+        get :attachment, :id => id, :file => file_name
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context "when file name include '&' symbol" do
+      let(:file_name) { 'image&file.jpg' }
+
+      it 'sends the file as an inline attachment' do
+        expect(controller).to receive(:send_file).with(attachment_path, :filename => file_name, :disposition => 'inline')
+        get :attachment, :id => id, :file => file_name
+        expect(response.status).to eq(200)
+      end
+    end
+
     it 'sends the file as an inline attachment' do
       expect(controller).to receive(:send_file).with(attachment_path, :filename => file_name, :disposition => 'inline')
-      get :attachment, :id => id, :file => file_name.gsub(/\.\w+/, ''), :format => File.extname(file_name)[1..-1]
+      get :attachment, :id => id, :file => file_name
       expect(response.status).to eq(200)
     end
 
