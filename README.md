@@ -85,7 +85,7 @@ ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
 
 ## Contributing
 
-1. Fork it
+1. Fork it and run `bin/setup`
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
