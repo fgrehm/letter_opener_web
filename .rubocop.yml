@@ -1,0 +1,22 @@
+---
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - "tmp/**/*"
+    - "vendor/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Metrics/LineLength:
+  Max: 120

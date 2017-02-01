@@ -1,4 +1,5 @@
-# Fix for ruby 1.8.7
+# frozen_string_literal: true
+# Fix for ruby 1.8.7
 require 'active_support/core_ext/kernel/singleton_class'
 
 require 'letter_opener'
@@ -8,11 +9,15 @@ module LetterOpenerWeb
   class Engine < ::Rails::Engine
     isolate_namespace LetterOpenerWeb
 
-    initializer "letter_opener_web.add_delivery_method" do
-      ActionMailer::Base.add_delivery_method :letter_opener_web, LetterOpenerWeb::DeliveryMethod, :location => Rails.root.join("tmp", "letter_opener")
+    initializer 'letter_opener_web.add_delivery_method' do
+      ActionMailer::Base.add_delivery_method(
+        :letter_opener_web,
+        LetterOpenerWeb::DeliveryMethod,
+        location: Rails.root.join('tmp', 'letter_opener')
+      )
     end
 
-    initializer "assets" do |app|
+    initializer 'assets' do |_app|
       Rails.application.config.assets.precompile += %w(
         letter_opener_web/application.js
         letter_opener_web/application.css

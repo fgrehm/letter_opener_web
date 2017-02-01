@@ -1,4 +1,5 @@
 #!/usr/bin/env rake
+# frozen_string_literal: true
 
 desc 'Print out all defined routes in match order, with names. Target specific controller with CONTROLLER=x.'
 task :routes do
@@ -34,6 +35,8 @@ require 'bundler/gem_tasks'
 
 begin
   require 'rspec/core/rake_task'
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
   RSpec::Core::RakeTask.new(:spec)
-  task :default => :spec
-rescue LoadError; end
+  task default: [:spec, :rubocop]
+rescue LoadError; end # rubocop:disable Lint/HandleExceptions

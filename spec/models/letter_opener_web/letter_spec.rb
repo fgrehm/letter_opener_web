@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe LetterOpenerWeb::Letter do
@@ -21,12 +22,14 @@ MAIL
     allow(described_class).to receive(:letters_location).and_return(location)
     allow_any_instance_of(described_class).to receive(:letters_location).and_return(location)
 
-    ['1111_1111', '2222_2222'].each do |folder|
+    %w(1111_1111 2222_2222).each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
-      File.open("#{location}/#{folder}/plain.html", 'w') {|f| f.write("Plain text for #{folder}") }
-      File.open("#{location}/#{folder}/rich.html", 'w')  {|f| f.write(rich_text(folder)) }
+      File.open("#{location}/#{folder}/plain.html", 'w') { |f| f.write("Plain text for #{folder}") }
+      File.open("#{location}/#{folder}/rich.html", 'w')  { |f| f.write(rich_text(folder)) }
       FileUtils.mkdir_p("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}")
-      File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w')  {|f| f.write("Rich text for #{folder}") }
+      File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w') do |f|
+        f.write("Rich text for #{folder}")
+      end
     end
   end
 
@@ -36,12 +39,18 @@ MAIL
 
   describe 'rich text version' do
     let(:id) { '1111_1111' }
-    subject { described_class.new(:id => id).rich_text }
+    subject { described_class.new(id: id).rich_text }
 
     it { is_expected.to match(/Rich text for 1111_1111/) }
 
     it 'changes links to show up on a new window' do
-      expect(subject).to include("<a href='a-link.html' target='_blank'>\n  <img src='an-image.jpg'/>\n  Link text\n</a>")
+      link_html = [
+        "<a href='a-link.html' target='_blank'>",
+        "<img src='an-image.jpg'/>",
+        "Link text\n</a>"
+      ].join("\n  ")
+
+      expect(subject).to include(link_html)
     end
 
     it 'always rewrites links with a closing tag rather than making them selfclosing' do
@@ -51,21 +60,21 @@ MAIL
 
   describe 'plain text version' do
     let(:id) { '2222_2222' }
-    subject { described_class.new(:id => id).plain_text }
+    subject { described_class.new(id: id).plain_text }
 
     it { is_expected.to match(/Plain text for 2222_2222/) }
   end
 
   describe 'default style' do
     let(:id) { '2222_2222' }
-    subject { described_class.new(:id => id) }
+    subject { described_class.new(id: id) }
 
     it 'returns rich if rich text version is present' do
       expect(subject.default_style).to eq('rich')
     end
 
     it 'returns plain if rich text version is not present' do
-      allow(File).to receive_messages(:exists? => false)
+      allow(File).to receive_messages(exist?: false)
       expect(subject.default_style).to eq('plain')
     end
   end
@@ -75,7 +84,7 @@ MAIL
     let(:attachments_dir) { "#{location}/#{id}/attachments" }
     let(:id)              { '1111_1111' }
 
-    subject { described_class.new(:id => id) }
+    subject { described_class.new(id: id) }
 
     before do
       FileUtils.mkdir_p(attachments_dir)
@@ -83,7 +92,7 @@ MAIL
     end
 
     it 'builds a hash with file name as key and full path as value' do
-      expect(subject.attachments).to eq({ file => "#{attachments_dir}/#{file}" })
+      expect(subject.attachments).to eq(file => "#{attachments_dir}/#{file}")
     end
   end
 
@@ -120,7 +129,7 @@ MAIL
 
   describe '#delete' do
     let(:id) { '1111_1111' }
-    subject { described_class.new(:id => id).delete }
+    subject { described_class.new(id: id).delete }
 
     it'removes the letter with given id' do
       subject
