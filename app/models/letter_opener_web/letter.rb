@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 module LetterOpenerWeb
   class Letter
-    cattr_accessor :letters_location do
-      Rails.root.join('tmp', 'letter_opener')
-    end
-
     attr_reader :id, :sent_at
 
+    def self.letters_location
+      @letters_location ||= LetterOpenerWeb.config.letters_location
+    end
+
+    def self.letters_location=(directory)
+      LetterOpenerWeb.configure { |config| config.letters_location = directory }
+      @letters_location = nil
+    end
+
     def self.search
-      letters = Dir.glob("#{letters_location}/*").map do |folder|
+      letters = Dir.glob("#{LetterOpenerWeb.config.letters_location}/*").map do |folder|
         new(id: File.basename(folder), sent_at: File.mtime(folder))
       end
       letters.sort_by(&:sent_at).reverse
@@ -19,7 +24,7 @@ module LetterOpenerWeb
     end
 
     def self.destroy_all
-      FileUtils.rm_rf(letters_location)
+      FileUtils.rm_rf(LetterOpenerWeb.config.letters_location)
     end
 
     def initialize(params)
@@ -50,7 +55,7 @@ module LetterOpenerWeb
     end
 
     def delete
-      FileUtils.rm_rf("#{letters_location}/#{id}")
+      FileUtils.rm_rf("#{LetterOpenerWeb.config.letters_location}/#{id}")
     end
 
     def exists?
@@ -60,7 +65,7 @@ module LetterOpenerWeb
     private
 
     def base_dir
-      "#{letters_location}/#{id}"
+      "#{LetterOpenerWeb.config.letters_location}/#{id}"
     end
 
     def read_file(style)

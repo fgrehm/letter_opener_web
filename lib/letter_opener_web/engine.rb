@@ -13,7 +13,7 @@ module LetterOpenerWeb
       ActionMailer::Base.add_delivery_method(
         :letter_opener_web,
         LetterOpenerWeb::DeliveryMethod,
-        location: LetterOpenerWeb::Letter.letters_location
+        location: LetterOpenerWeb.config.letters_location
       )
     end
 
