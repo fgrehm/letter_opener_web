@@ -460,3 +460,147 @@ Completed 302 Found in 1ms
 Processing by LetterOpenerWeb::LettersController#clear as HTML
 Redirected to http://test.host/letter_opener_web/
 Completed 302 Found in 0ms
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.3ms)
+Completed 200 OK in 15ms (Views: 14.3ms)
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms)
+Processing by LetterOpenerWeb::LettersController#clear as HTML
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 2ms
+Processing by LetterOpenerWeb::LettersController#clear as HTML
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 2ms
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.2ms)
+Completed 200 OK in 15ms (Views: 15.2ms)
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 4.4ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 9ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 6ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#attachment as 
+  Parameters: {"id"=>"an-id", "file"=>"unknown"}
+  Rendered text template (0.0ms)
+Completed 404 Not Found in 5ms (Views: 4.5ms)
+Processing by LetterOpenerWeb::LettersController#attachment as JPEG
+  Parameters: {"id"=>"an-id", "file"=>"image"}
+Completed 200 OK in 0ms
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.2ms)
+Completed 200 OK in 9ms (Views: 9.2ms)
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms)
+Processing by LetterOpenerWeb::LettersController#clear as HTML
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 2ms
+Processing by LetterOpenerWeb::LettersController#clear as HTML
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 7ms
+Processing by LetterOpenerWeb::LettersController#destroy as HTML
+  Parameters: {"id"=>"an-id"}
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 3ms
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+Filter chain halted as :load_letter rendered or redirected
+Completed 404 Not Found in 0ms
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 5ms (Views: 0.4ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 5.1ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"plain"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+Filter chain halted as :load_letter rendered or redirected
+Completed 404 Not Found in 0ms
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.2ms)
+Processing by LetterOpenerWeb::LettersController#show as HTML
+  Parameters: {"id"=>"an-id", "style"=>"rich"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 5ms (Views: 0.3ms)
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.2ms)
+Completed 200 OK in 10ms (Views: 10.1ms)
+Processing by LetterOpenerWeb::LettersController#index as HTML
+  Rendered /Users/pseudomuto/Code/letter_opener_web/app/views/letter_opener_web/letters/index.html.erb within layouts/letter_opener_web/application (0.1ms)
+Completed 200 OK in 0ms (Views: 0.4ms)
+Processing by LetterOpenerWeb::LettersController#destroy as HTML
+  Parameters: {"id"=>"an-id"}
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 2ms
+Processing by LetterOpenerWeb::LettersController#clear as HTML
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 2ms
+Processing by LetterOpenerWeb::LettersController#clear as HTML
+Redirected to http://test.host/letter_opener_web/
+Completed 302 Found in 2ms
+Processing by LetterOpenerWeb::LettersController#attachment as JPEG
+  Parameters: {"id"=>"an-id", "file"=>"image"}
+Completed 200 OK in 0ms
+Processing by LetterOpenerWeb::LettersController#attachment as 
+  Parameters: {"id"=>"an-id", "file"=>"unknown"}
+  Rendered text template (0.0ms)
+Completed 404 Not Found in 1ms (Views: 0.3ms)
