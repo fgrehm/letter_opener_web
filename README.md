@@ -12,7 +12,9 @@ Check out http://letter-opener-web.herokuapp.com to see it in action.
 First add the gem to your development environment and run the `bundle` command to install it.
 
 ```ruby
-gem 'letter_opener_web', :group => :development
+group :development do
+  gem 'letter_opener_web'
+end
 ```
 
 ## Usage
@@ -50,6 +52,15 @@ config.action_mailer.delivery_method = :letter_opener_web
 
 # If not everyone on the team is using vagrant
 config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+```
+
+If you're using `:letter_opener_web` as your delivery method, you can change the location of the letters by adding the
+following to an initializer (or in development.rb):
+
+```ruby
+LetterOpenerWeb.configure do |config|
+  config.letters_location = Rails.root.join('your', 'new', 'path')
+end
 ```
 
 ## Usage on Heroku

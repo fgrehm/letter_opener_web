@@ -19,8 +19,7 @@ MAIL
   end
 
   before :each do
-    allow(described_class).to receive(:letters_location).and_return(location)
-    allow_any_instance_of(described_class).to receive(:letters_location).and_return(location)
+    LetterOpenerWeb.configure { |config| config.letters_location = location }
 
     %w(1111_1111 2222_2222).each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
@@ -34,6 +33,7 @@ MAIL
   end
 
   after :each do
+    LetterOpenerWeb.reset!
     FileUtils.rm_rf(location)
   end
 
