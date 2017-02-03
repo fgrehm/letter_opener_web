@@ -15,3 +15,5 @@ spec/dummy/log/
 test/tmp
 test/version_tmp
 tmp
+Gemfile.lock
+
