@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'spec_helper'
-
 describe LetterOpenerWeb::Letter do
   let(:location) { File.expand_path('../../../tmp', __FILE__) }
 

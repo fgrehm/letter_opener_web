@@ -1,7 +1,4 @@
 # frozen_string_literal: true
-# Fix for ruby 1.8.7
-require 'active_support/core_ext/kernel/singleton_class'
-
 require 'letter_opener'
 require 'letter_opener_web/delivery_method'
 
