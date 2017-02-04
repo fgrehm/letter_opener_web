@@ -4,8 +4,6 @@ module LetterOpenerWeb
     before_action :check_style, only: [:show]
     before_action :load_letter, only: [:show, :attachment, :destroy]
 
-    layout 'letter_opener_web/application'
-
     def index
       @letters = Letter.search
     end
