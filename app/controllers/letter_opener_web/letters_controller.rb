@@ -13,7 +13,7 @@ module LetterOpenerWeb
                     .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
                     .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
 
-      render plain: text
+      render html: text.html_safe
     end
 
     def attachment

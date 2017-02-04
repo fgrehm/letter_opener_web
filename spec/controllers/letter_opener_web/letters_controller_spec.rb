@@ -35,9 +35,9 @@ describe LetterOpenerWeb::LettersController do
         get :show, id: id, style: letter_style
       end
 
-      it 'renders an plain 200 response' do
+      it 'renders an HTML 200 response' do
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq('text/plain')
+        expect(response.content_type).to eq('text/html')
       end
     end
 
