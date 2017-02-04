@@ -13,7 +13,8 @@ module LetterOpenerWeb
       text = @letter.send("#{params[:style]}_text").
         gsub(/"plain\.html"/, "\"#{LetterOpenerWeb.railtie_routes_url_helpers.letter_path(:id => @letter.id, :style => 'plain')}\"").
         gsub(/"rich\.html"/, "\"#{LetterOpenerWeb.railtie_routes_url_helpers.letter_path(:id => @letter.id, :style => 'rich')}\"")
-      render :plain => text
+
+      render :body => text
     end
 
     def attachment
