@@ -4,6 +4,8 @@ module LetterOpenerWeb
     before_action :check_style, only: [:show]
     before_action :load_letter, only: [:show, :attachment, :destroy]
 
+    layout 'letter_opener_web/application'
+
     def index
       @letters = Letter.search
     end
@@ -13,7 +15,7 @@ module LetterOpenerWeb
                     .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
                     .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
 
-      render plain: text
+      render html: text.html_safe
     end
 
     def attachment
