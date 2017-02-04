@@ -14,7 +14,7 @@ module LetterOpenerWeb
         gsub(/"plain\.html"/, "\"#{LetterOpenerWeb.railtie_routes_url_helpers.letter_path(:id => @letter.id, :style => 'plain')}\"").
         gsub(/"rich\.html"/, "\"#{LetterOpenerWeb.railtie_routes_url_helpers.letter_path(:id => @letter.id, :style => 'rich')}\"")
 
-      render :body => text
+      render :html => text.html_safe
     end
 
     def attachment
