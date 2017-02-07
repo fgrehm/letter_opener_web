@@ -13,3 +13,12 @@ before_install:
 
 notifications:
   email: false
+
+deploy:
+  provider: rubygems
+  gem: letter_opener_web
+  api_key:
+    secure: Rv1IgeIhnfIV9NVr3iPwb2UCXe0UEtuZHfgkGruu3yvfoSGmQQ0xnc45ZhOH8ANl6tjzYNuilSDYbhz3fWOmniHsnzLGbFbccz/CWHmldUpPgVnKQ0d0Bm2EeNuVpmHwdnG7KEqMC0x1gxFYks62BGpx4C/2Kh5nWbvvPxN8X0U=
+  on:
+    tags: true
+    repo: fgrehm/letter_opener_web
