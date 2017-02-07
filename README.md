@@ -1,6 +1,6 @@
 # letter_opener_web
 
-[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.png?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web) [![Gem Version](https://badge.fury.io/rb/letter_opener_web.png)](http://badge.fury.io/rb/letter_opener_web) [![Code Climate](https://codeclimate.com/github/fgrehm/letter_opener_web.png)](https://codeclimate.com/github/fgrehm/letter_opener_web) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/) [![Gitter chat](https://badges.gitter.im/fgrehm/letter_opener_web.png)](https://gitter.im/fgrehm/letter_opener_web)
+[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.png?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web) [![Gem Version](https://badge.fury.io/rb/letter_opener_web.png)](http://badge.fury.io/rb/letter_opener_web) [![Code Climate](https://codeclimate.com/github/fgrehm/letter_opener_web.png)](https://codeclimate.com/github/fgrehm/letter_opener_web) [![Gitter chat](https://badges.gitter.im/fgrehm/letter_opener_web.png)](https://gitter.im/fgrehm/letter_opener_web)
 
 Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
 browsing sent emails.
