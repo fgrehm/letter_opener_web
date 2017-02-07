@@ -1,6 +1,7 @@
 ## [1.3.1](https://github.com/fgrehm/letter_opener_web/compare/v1.3.0...v1.3.1) (Feb 04, 2017)
 
-  - Remove Rails 5 deprecation warnings
+  - Remove warnings about unused variables [#45](https://github.com/fgrehm/letter_opener_web/pull/45)
+  - Remove Rails 5 deprecation warnings [#54](https://github.com/fgrehm/letter_opener_web/pull/54)
 
 ## [1.3.0](https://github.com/fgrehm/letter_opener_web/compare/v1.2.3...v1.3.0) (Feb 02, 2015)
 
