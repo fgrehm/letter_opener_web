@@ -7,11 +7,13 @@ module LetterOpenerWeb
     isolate_namespace LetterOpenerWeb
 
     initializer 'letter_opener_web.add_delivery_method' do
-      ActionMailer::Base.add_delivery_method(
-        :letter_opener_web,
-        LetterOpenerWeb::DeliveryMethod,
-        location: LetterOpenerWeb.config.letters_location
-      )
+      ActiveSupport.on_load :action_mailer do
+        ActionMailer::Base.add_delivery_method(
+          :letter_opener_web,
+          LetterOpenerWeb::DeliveryMethod,
+          location: LetterOpenerWeb.config.letters_location
+        )
+      end
     end
 
     initializer 'assets' do |_app|
