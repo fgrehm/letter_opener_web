@@ -33,4 +33,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Strict frame settings to ensure appropriate endpoints work under tightened
+  # defaults.
+  config.action_dispatch.default_headers["X-Frame-Options"] = "DENY"
 end

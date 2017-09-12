@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module LetterOpenerWeb
   class LettersController < ApplicationController
+    before_action :allow_same_origin, only: [:show]
     before_action :check_style, only: [:show]
     before_action :load_letter, only: [:show, :attachment, :destroy]
 
@@ -35,6 +36,10 @@ module LetterOpenerWeb
     end
 
     private
+
+    def allow_same_origin
+      response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    end
 
     def check_style
       params[:style] = 'rich' unless %w(plain rich).include?(params[:style])

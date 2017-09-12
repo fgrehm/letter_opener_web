@@ -38,6 +38,7 @@ describe LetterOpenerWeb::LettersController do
       it 'renders an HTML 200 response' do
         expect(response.status).to eq(200)
         expect(response.content_type).to eq('text/html')
+        expect(response.headers['X-Frame-Options']).to eq('SAMEORIGIN')
       end
     end
 
