@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'letter_opener'
 require 'letter_opener_web/delivery_method'
 
@@ -15,13 +16,13 @@ module LetterOpenerWeb
     end
 
     initializer 'assets' do |_app|
-      Rails.application.config.assets.precompile += %w(
+      Rails.application.config.assets.precompile += %w[
         letter_opener_web/application.js
         letter_opener_web/application.css
         letter_opener_web/glyphicons-halflings.png
         letter_opener_web/glyphicons-halflings-white.png
         letter_opener_web/blue-dot.ico
-      )
+      ]
     end
   end
 end

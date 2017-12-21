@@ -1,25 +1,26 @@
 # frozen_string_literal: true
+
 describe LetterOpenerWeb::Letter do
   let(:location) { File.expand_path('../../../tmp', __FILE__) }
 
   def rich_text(mail_id)
-    <<-MAIL
-Rich text for #{mail_id}
-<!DOCTYPE html>
-<a href='a-link.html'>
-  <img src='an-image.jpg'>
-  Link text
-</a>
-<a href='fooo.html'>Bar</a>
-<a href="example.html" class="blank"></a>
-<address><a href="inside-address.html">inside address</a></address>
+    <<~MAIL
+      Rich text for #{mail_id}
+      <!DOCTYPE html>
+      <a href='a-link.html'>
+        <img src='an-image.jpg'>
+        Link text
+      </a>
+      <a href='fooo.html'>Bar</a>
+      <a href="example.html" class="blank"></a>
+      <address><a href="inside-address.html">inside address</a></address>
 MAIL
   end
 
   before :each do
     LetterOpenerWeb.configure { |config| config.letters_location = location }
 
-    %w(1111_1111 2222_2222).each do |folder|
+    %w[1111_1111 2222_2222].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
       File.open("#{location}/#{folder}/plain.html", 'w') { |f| f.write("Plain text for #{folder}") }
       File.open("#{location}/#{folder}/rich.html", 'w')  { |f| f.write(rich_text(folder)) }

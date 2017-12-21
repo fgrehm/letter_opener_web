@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'letter_opener/delivery_method'
 
 module LetterOpenerWeb

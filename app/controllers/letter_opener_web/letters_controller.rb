@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module LetterOpenerWeb
   class LettersController < ApplicationController
     before_action :check_style, only: [:show]
-    before_action :load_letter, only: [:show, :attachment, :destroy]
+    before_action :load_letter, only: %i[show attachment destroy]
 
     def index
       @letters = Letter.search
@@ -37,7 +38,7 @@ module LetterOpenerWeb
     private
 
     def check_style
-      params[:style] = 'rich' unless %w(plain rich).include?(params[:style])
+      params[:style] = 'rich' unless %w[plain rich].include?(params[:style])
     end
 
     def load_letter
