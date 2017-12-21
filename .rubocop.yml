@@ -2,8 +2,13 @@
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:
+    - "spec/dummy/bin/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
+
+# not available in older versions of Ruby
+Layout/IndentHeredoc:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false

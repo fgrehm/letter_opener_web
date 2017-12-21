@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module LetterOpenerWeb
   class Letter
     attr_reader :id, :sent_at
