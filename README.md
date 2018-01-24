@@ -1,6 +1,6 @@
 # letter_opener_web
 
-[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.png?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web) [![Gem Version](https://badge.fury.io/rb/letter_opener_web.png)](http://badge.fury.io/rb/letter_opener_web) [![Code Climate](https://codeclimate.com/github/fgrehm/letter_opener_web.png)](https://codeclimate.com/github/fgrehm/letter_opener_web) [![Gittip](http://img.shields.io/gittip/fgrehm.svg)](https://www.gittip.com/fgrehm/) [![Gitter chat](https://badges.gitter.im/fgrehm/letter_opener_web.png)](https://gitter.im/fgrehm/letter_opener_web)
+[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.png?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web) [![Gem Version](https://badge.fury.io/rb/letter_opener_web.png)](http://badge.fury.io/rb/letter_opener_web) [![Code Climate](https://codeclimate.com/github/fgrehm/letter_opener_web.png)](https://codeclimate.com/github/fgrehm/letter_opener_web) [![Gitter chat](https://badges.gitter.im/fgrehm/letter_opener_web.png)](https://gitter.im/fgrehm/letter_opener_web)
 
 Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
 browsing sent emails.
@@ -12,7 +12,9 @@ Check out http://letter-opener-web.herokuapp.com to see it in action.
 First add the gem to your development environment and run the `bundle` command to install it.
 
 ```ruby
-gem 'letter_opener_web', '~> 1.2.0', :group => :development
+group :development do
+  gem 'letter_opener_web'
+end
 ```
 
 ## Usage
@@ -52,6 +54,15 @@ config.action_mailer.delivery_method = :letter_opener_web
 config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
 ```
 
+If you're using `:letter_opener_web` as your delivery method, you can change the location of the letters by adding the
+following to an initializer (or in development.rb):
+
+```ruby
+LetterOpenerWeb.configure do |config|
+  config.letters_location = Rails.root.join('your', 'new', 'path')
+end
+```
+
 ## Usage on Heroku
 
 Some people use this gem on staging environments on Heroku and to set that up
@@ -61,7 +72,7 @@ the route for all environments on your `routes.rb`.
 In order words, your `Gemfile` will have:
 
 ```ruby
-gem 'letter_opener_web', '~> 1.2.0'
+gem 'letter_opener_web'
 ```
 
 And your `routes.rb`:
@@ -85,7 +96,7 @@ ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
 
 ## Contributing
 
-1. Fork it
+1. Fork it and run `bin/setup`
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
