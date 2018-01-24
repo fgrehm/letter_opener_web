@@ -1,0 +1,50 @@
+<h1><a href="https://github.com/fgrehm/letter_opener_web">letter_opener_web</a> Demo</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+
+    <div class="well">
+      <%= form_tag root_path, multipart: true do %>
+        <legend>Contact form</legend>
+        <div class="control-group">
+          <label class="control-label" for="email">Email</label>
+          <div class="controls">
+            <input type="text" class="input-block-level" name="email">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="attachment">Attachment <em>(optional)</em></label>
+          <div class="controls">
+            <input type='file' name='attachment' />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="message">Message</label>
+          <div class="controls">
+            <textarea class="input-block-level" name="message" rows="6"></textarea>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary pull-right">
+              <i class="icon-envelope icon-white"></i>
+              Send mail
+            </button>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      <% end %>
+
+      <p class="footer">
+      <a href="/letter_opener" target="_blank">Click here</a>
+      to see sent mails
+      </p>
+    </div>
+
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Archimedes - Mail</title>
+  <%= stylesheet_link_tag    "letter_opener_web/application", :media => "all" %>
+  <%= javascript_include_tag "letter_opener_web/application" %>
+  <%= favicon_link_tag       "letter_opener_web/blue-dot.ico", :rel => "icon" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

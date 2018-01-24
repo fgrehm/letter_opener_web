@@ -1,0 +1,21 @@
+<style type="text/css">
+  label                  { font-weight: bold; }
+  .from                  { color: #888; font-style: italic }
+  .message               { padding-left: 10px; }
+  .message p:first-child { margin-top: 0; }
+</style>
+
+<h1>New message!</h1>
+
+<p>
+  <label>From:</label>
+  <span class="from"><%= @from %></span>
+</p>
+
+<p>
+  <label>Message:</label>
+</p>
+
+<div class="message">
+  <%= simple_format @message %>
+</div>

@@ -10,7 +10,7 @@ jQuery(function($) {
   var favicon = new Favcount($('link[rel="icon"]').attr('href'));
   update_favicon(favicon);
 
-  $('.letter-opener').on('click', 'tr', function() {
+  $('.letter-opener').on('click', 'tbody > tr', function() {
     var $this = $(this);
     $('iframe').attr('src', $this.find('a').attr('href'));
     $this.parent().find('.active').removeClass('active');

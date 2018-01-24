@@ -1,3 +1,15 @@
+## [1.3.2](https://github.com/fgrehm/letter_opener_web/compare/v1.3.1...v1.3.2) (Jan 14, 2018)
+
+  - Disable Launchy with ENV to avoid redefining the whole delivery method [#73](https://github.com/fgrehm/letter_opener_web/pull/73)
+  - Fix new Rubocop warnings [#72](https://github.com/fgrehm/letter_opener_web/pull/72)
+  - Hover state fixed to only highlight `tbody>tr` [#70](https://github.com/fgrehm/letter_opener_web/pull/70)
+  - Use `ActiveSupport.on_load` to make sure we don't have load order issues [#66](https://github.com/fgrehm/letter_opener_web/pull/66)
+
+## [1.3.1](https://github.com/fgrehm/letter_opener_web/compare/v1.3.0...v1.3.1) (Feb 04, 2017)
+
+  - Remove warnings about unused variables [#45](https://github.com/fgrehm/letter_opener_web/pull/45)
+  - Remove Rails 5 deprecation warnings [#54](https://github.com/fgrehm/letter_opener_web/pull/54)
+
 ## [1.3.0](https://github.com/fgrehm/letter_opener_web/compare/v1.2.3...v1.3.0) (Feb 02, 2015)
 
   - Depend on `railties` and `actionmailer` [#38](https://github.com/fgrehm/letter_opener_web/pull/38)
