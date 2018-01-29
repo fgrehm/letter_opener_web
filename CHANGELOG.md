@@ -1,3 +1,8 @@
+## [1.3.3](https://github.com/fgrehm/letter_opener_web/compare/v1.3.2...v1.3.3) (Jan 29, 2018)
+
+  - Set `LAUNCHY_DRY_RUN` explicitly to avoid `Launchy::CommandNotFoundError` [#75](https://github.com/fgrehm/letter_opener_web/pull/75)
+  - Update Ruby matrix for test to include more recent versions [#77](https://github.com/fgrehm/letter_opener_web/pull/77)
+
 ## [1.3.2](https://github.com/fgrehm/letter_opener_web/compare/v1.3.1...v1.3.2) (Jan 14, 2018)
 
   - Disable Launchy with ENV to avoid redefining the whole delivery method [#73](https://github.com/fgrehm/letter_opener_web/pull/73)
