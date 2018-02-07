@@ -6,11 +6,13 @@ require 'rexml/document'
 module LetterOpenerWeb
   class Config
     attr_accessor :letters_location
+    attr_accessor :base_controller
   end
 
   def self.config
     @config ||= Config.new.tap do |conf|
       conf.letters_location = Rails.root.join('tmp', 'letter_opener')
+      conf.base_controller = ApplicationController
     end
   end
 
