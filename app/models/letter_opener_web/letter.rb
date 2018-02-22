@@ -2,7 +2,7 @@
 
 module LetterOpenerWeb
   class Letter
-    attr_reader :id, :sent_at
+    attr_reader :id
 
     def self.letters_location
       @letters_location ||= LetterOpenerWeb.config.letters_location
@@ -15,7 +15,7 @@ module LetterOpenerWeb
 
     def self.search
       letters = Dir.glob("#{LetterOpenerWeb.config.letters_location}/*").map do |folder|
-        new(id: File.basename(folder), sent_at: File.mtime(folder))
+        new(id: File.basename(folder))
       end
       letters.sort_by(&:sent_at).reverse
     end
@@ -24,21 +24,30 @@ module LetterOpenerWeb
       new(id: id)
     end
 
+    def sent_at
+      @sent_at ||= begin
+        if LetterOpenerWeb.config.letters_in_time_zone && mtime.respond_to?(:in_time_zone)
+          mtime.in_time_zone(Rails.configuration.time_zone)
+        else
+          mtime
+        end
+      end
+    end
+
     def self.destroy_all
       FileUtils.rm_rf(LetterOpenerWeb.config.letters_location)
     end
 
     def initialize(params)
-      @id      = params.fetch(:id)
-      @sent_at = params[:sent_at]
+      @id = params.fetch(:id)
     end
 
     def plain_text
-      @plain_text ||= adjust_link_targets(read_file(:plain))
+      @plain_text ||= adjust_contents(read_file(:plain))
     end
 
     def rich_text
-      @rich_text ||= adjust_link_targets(read_file(:rich))
+      @rich_text ||= adjust_contents(read_file(:rich))
     end
 
     def to_param
@@ -69,12 +78,20 @@ module LetterOpenerWeb
       "#{LetterOpenerWeb.config.letters_location}/#{id}"
     end
 
+    def mtime
+      @mtime ||= File.mtime(base_dir) if exists?
+    end
+
     def read_file(style)
       File.read("#{base_dir}/#{style}.html")
     end
 
     def style_exists?(style)
       File.exist?("#{base_dir}/#{style}.html")
+    end
+
+    def adjust_contents(contents)
+      adjust_link_targets(adjust_date(contents))
     end
 
     def adjust_link_targets(contents)
@@ -103,6 +120,16 @@ module LetterOpenerWeb
           fixed_link.gsub!(img, fixed_img)
         end
       end
+    end
+
+    def adjust_date(contents)
+      message_headers = contents.scan(%r{<div\sid="message_headers">(?:.|\s)*?</div>}).first
+      if message_headers.present?
+        xml = REXML::Document.new(message_headers).root
+        sent_at_element = xml.elements['dl/dd[4]']
+        contents.gsub!(sent_at_element.to_s, "<dd>#{sent_at}</dd>") if sent_at_element.present?
+      end
+      contents
     end
   end
 end
