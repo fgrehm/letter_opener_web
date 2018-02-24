@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_dependency 'letter_opener_web/application_controller'
+
 module LetterOpenerWeb
   class LettersController < ApplicationController
     before_action :check_style, only: [:show]
