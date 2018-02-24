@@ -1,3 +1,9 @@
+## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.3.3...master)
+
+### Fixed
+
+* Due to a load order issue, sometimes the main `ApplicationController` was used by this gem (unnecessary) [#82]
+
 ## [1.3.3](https://github.com/fgrehm/letter_opener_web/compare/v1.3.2...v1.3.3) (Jan 29, 2018)
 
   - Set `LAUNCHY_DRY_RUN` explicitly to avoid `Launchy::CommandNotFoundError` [#75](https://github.com/fgrehm/letter_opener_web/pull/75)
