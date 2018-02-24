@@ -2,7 +2,7 @@
 
 ### Removed
 
-* The dependency on the asset pipeline. Good news for API-only apps and people that don't use Sprockets! [#83](https://github.com/fgrehm/letter_opener_web/pull/82)
+* The dependency on the asset pipeline. Good news for API-only apps and people that don't use Sprockets! [#83](https://github.com/fgrehm/letter_opener_web/pull/83)
 
 ### Fixed
 

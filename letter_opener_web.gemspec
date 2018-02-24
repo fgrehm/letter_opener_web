@@ -7,8 +7,8 @@ require 'letter_opener_web/version'
 Gem::Specification.new do |gem|
   gem.name          = 'letter_opener_web'
   gem.version       = LetterOpenerWeb::VERSION
-  gem.authors       = ['Fabio Rehm']
-  gem.email         = ['fgrehm@gmail.com']
+  gem.authors       = ['Fabio Rehm', 'David Muto']
+  gem.email         = ['fgrehm@gmail.com', 'david.muto@gmail.com']
   gem.description   = 'Gives letter_opener an interface for browsing sent emails'
   gem.summary       = gem.description
   gem.homepage      = 'https://github.com/fgrehm/letter_opener_web'
