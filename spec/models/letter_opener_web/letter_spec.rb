@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe LetterOpenerWeb::Letter do
-  let(:location) { File.expand_path('../../../tmp', __FILE__) }
+  let(:location) { File.expand_path('../../tmp', __dir__) }
 
   def rich_text(mail_id)
     <<-MAIL
