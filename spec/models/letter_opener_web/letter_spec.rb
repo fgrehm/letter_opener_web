@@ -6,6 +6,21 @@ describe LetterOpenerWeb::Letter do
   def rich_text(mail_id)
     <<-MAIL
 Rich text for #{mail_id}
+<div id="message_headers">
+  <dl>
+    <dt>From:</dt>
+    <dd>App &lt;app@example.com&gt;</dd>
+
+    <dt>Subject:</dt>
+    <dd><strong>Welcome!</strong></dd>
+
+    <dt>Date:</dt>
+    <dd>Jul 11, 2018 12:21:25 PM EDT</dd>
+
+    <dt>To:</dt>
+    <dd>customer@example.com</dd>
+  </dl>
+</div>
 <!DOCTYPE html>
 <a href='a-link.html'>
   <img src='an-image.jpg'>
@@ -75,6 +90,33 @@ MAIL
     it 'returns plain if rich text version is not present' do
       allow(File).to receive_messages(exist?: false)
       expect(subject.default_style).to eq('plain')
+    end
+  end
+
+  describe 'subject' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id) }
+
+    it 'returns subject from message' do
+      expect(subject.subject).to eq('Welcome!')
+    end
+  end
+
+  describe 'to' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id) }
+
+    it 'returns address who was sent the message' do
+      expect(subject.to).to eq('customer@example.com')
+    end
+  end
+
+  describe 'from' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id) }
+
+    it 'returns address who sent the message' do
+      expect(subject.from).to eq('App <app@example.com>')
     end
   end
 
