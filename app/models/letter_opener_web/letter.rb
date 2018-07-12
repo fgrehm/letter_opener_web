@@ -2,7 +2,7 @@
 
 module LetterOpenerWeb
   class Letter
-    attr_reader :id, :sent_at, :subject
+    attr_reader :id, :sent_at
 
     def self.letters_location
       @letters_location ||= LetterOpenerWeb.config.letters_location
@@ -76,12 +76,7 @@ module LetterOpenerWeb
     end
 
     def to_hash
-      {
-        from: from,
-        id: id,
-        subject: subject,
-        to: to,
-      }
+      { from: from, id: id, subject: subject, to: to }
     end
 
     private
