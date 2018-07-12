@@ -9,6 +9,13 @@ module LetterOpenerWeb
 
     def index
       @letters = Letter.search
+
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: @letters
+        end
+      end
     end
 
     def show

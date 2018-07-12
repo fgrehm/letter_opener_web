@@ -10,16 +10,36 @@ describe LetterOpenerWeb::LettersController do
   describe 'GET index' do
     before do
       allow(LetterOpenerWeb::Letter).to receive(:search)
-      get :index
     end
 
-    it 'searches for all letters' do
-      expect(LetterOpenerWeb::Letter).to have_received(:search)
+    context 'HTML' do
+      before do
+        get :index
+      end
+
+      it 'searches for all letters' do
+        expect(LetterOpenerWeb::Letter).to have_received(:search)
+      end
+
+      it 'returns an HTML 200 response' do
+        expect(response.status).to eq(200)
+        expect(response.content_type).to eq('text/html')
+      end
     end
 
-    it 'returns an HTML 200 response' do
-      expect(response.status).to eq(200)
-      expect(response.content_type).to eq('text/html')
+    context 'JSON' do
+      before do
+        get :index, format: :json
+      end
+
+      it 'searches for all letters' do
+        expect(LetterOpenerWeb::Letter).to have_received(:search)
+      end
+
+      it 'returns a JSON 200 response' do
+        expect(response.status).to eq(200)
+        expect(response.content_type).to eq('application/json')
+      end
     end
   end
 
