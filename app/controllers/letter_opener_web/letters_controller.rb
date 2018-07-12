@@ -23,6 +23,11 @@ module LetterOpenerWeb
                     .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
                     .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
 
+      if params[:raw]
+        doc = Nokogiri::HTML(text)
+        text = doc.at('iframe').attr('srcdoc') rescue text
+      end
+
       render html: text.html_safe
     end
 

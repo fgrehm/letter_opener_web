@@ -94,6 +94,21 @@ describe LetterOpenerWeb::LettersController do
         expect(response.status).to eq(404)
       end
     end
+
+    context 'with raw parameter' do
+      let(:rich_text_with_iframe)  { '<iframe srcdoc="message here" />' }
+      let(:plain_text)             { 'plain text href="rich.html"' }
+      let(:letter)                 { double(:letter, rich_text: rich_text_with_iframe, plain_text: plain_text, id: id) }
+
+      fit 'should return HTML without iframe' do
+        expect(LetterOpenerWeb::Letter).to receive(:find).with(id).and_return(letter)
+        expect(letter).to receive(:exists?).and_return(true)
+
+        get :show, id: id, style: 'rich', raw: 'raw'
+        expect(response.status).to eq(200)
+        expect(response.body).not_to match(/iframe/)
+      end
+    end
   end
 
   describe 'GET attachment' do
