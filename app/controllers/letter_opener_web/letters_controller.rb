@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+include LetterOpenerWeb::LettersHelper
 require_dependency 'letter_opener_web/application_controller'
 
 module LetterOpenerWeb

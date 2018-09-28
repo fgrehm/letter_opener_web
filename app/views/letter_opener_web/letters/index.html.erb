@@ -24,7 +24,7 @@
       <% if first_letter = @letters.shift %>
         <tr class="active">
           <td>
-            <%= link_to(first_letter.id, letter_path(first_letter, style: first_letter.default_style), target: 'mail') %>
+            <%= link_to(subject(first_letter), letter_path(first_letter, style: first_letter.default_style), target: 'mail') %>
           </td>
           <td><%= first_letter.sent_at %></td>
           <td>
@@ -39,7 +39,7 @@
       <% @letters.each do |letter| %>
         <tr>
           <td>
-            <%= link_to(letter.id, letter_path(letter, style: letter.default_style), target: 'mail') %>
+            <%= link_to(subject(letter), letter_path(letter, style: letter.default_style), target: 'mail') %>
           </td>
           <td><%= letter.sent_at %></td>
           <td>
