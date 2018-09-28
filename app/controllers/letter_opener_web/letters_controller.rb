@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+<<<<<<< HEAD
 include LetterOpenerWeb::LettersHelper
+=======
+require_dependency 'letter_opener_web/application_controller'
+>>>>>>> upstream/master
 
 module LetterOpenerWeb
   class LettersController < ApplicationController
