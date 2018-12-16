@@ -4,8 +4,13 @@ require_dependency 'letter_opener_web/application_controller'
 
 module LetterOpenerWeb
   class LettersController < ApplicationController
-    before_action :check_style, only: [:show]
-    before_action :load_letter, only: %i[show attachment destroy]
+    if Rails::VERSION::MAJOR >= 4
+      before_action :check_style, only: [:show]
+      before_action :load_letter, only: %i[show attachment destroy]
+    else
+      before_filter :check_style, only: [:show]
+      before_filter :load_letter, only: %i[show attachment destroy]
+    end  
 
     def index
       @letters = Letter.search
@@ -15,8 +20,13 @@ module LetterOpenerWeb
       text = @letter.send("#{params[:style]}_text")
                     .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
                     .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
-
-      render html: text.html_safe
+      if Rails::VERSION::MAJOR >= 4
+        render html: text.html_safe
+      else
+        respond_to do |format|
+          format.html {render :text => text.html_safe}
+        end
+      end
     end
 
     def attachment
