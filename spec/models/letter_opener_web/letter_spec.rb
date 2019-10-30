@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe LetterOpenerWeb::Letter do
-  let(:location) { File.expand_path('../../../tmp', __FILE__) }
+  let(:location) { File.expand_path('../../tmp', __dir__) }
 
   def rich_text(mail_id)
     <<-MAIL
@@ -14,7 +14,7 @@ Rich text for #{mail_id}
 <a href='fooo.html'>Bar</a>
 <a href="example.html" class="blank"></a>
 <address><a href="inside-address.html">inside address</a></address>
-MAIL
+    MAIL
   end
 
   before :each do
