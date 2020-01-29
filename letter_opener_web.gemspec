@@ -25,6 +25,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rails', '~> 4.2.0'
   gem.add_development_dependency 'rspec-rails', '~> 3.0'
-  gem.add_development_dependency 'rubocop', '~> 0.47'
+  gem.add_development_dependency 'rubocop', '~> 0.79'
   gem.add_development_dependency 'shoulda-matchers', '~> 2.5'
 end

@@ -6,8 +6,7 @@ AllCops:
     - "tmp/**/*"
     - "vendor/**/*"
 
-# not available in older versions of Ruby
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 
 Style/Documentation:
@@ -23,5 +22,5 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120

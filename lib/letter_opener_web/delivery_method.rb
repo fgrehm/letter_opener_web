@@ -9,7 +9,7 @@ module LetterOpenerWeb
       ENV['LAUNCHY_DRY_RUN'] = 'true'
 
       super
-    rescue Launchy::CommandNotFoundError # rubocop:disable HandleExceptions
+    rescue Launchy::CommandNotFoundError # rubocop:disable Lint/SuppressedException
       # Ignore for non-executable Launchy environment.
     ensure
       ENV['LAUNCHY_DRY_RUN'] = original
