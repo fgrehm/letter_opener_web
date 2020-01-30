@@ -1,4 +1,6 @@
-## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.3.4...master)
+## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.4.0...master)
+
+## [1.4.0](https://github.com/fgrehm/letter_opener_web/compare/v1.3.4...v1.4.0) (Jan 29, 2020)
 
   - Removed the dependency on the asset pipeline. Good news for API-only apps! [#83](https://github.com/fgrehm/letter_opener_web/pull/83)
   - Avoid `require_dependency` if Zeitwerk is enabled [#98](https://github.com/fgrehm/letter_opener_web/pull/98)
