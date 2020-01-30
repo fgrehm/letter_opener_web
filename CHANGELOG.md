@@ -1,5 +1,9 @@
 ## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.3.4...master)
 
+  - Removed the dependency on the asset pipeline. Good news for API-only apps! [#83](https://github.com/fgrehm/letter_opener_web/pull/83)
+  - Avoid `require_dependency` if Zeitwerk is enabled [#98](https://github.com/fgrehm/letter_opener_web/pull/98)
+  - Drop support for old rubies and rails. Ruby 2.5+ is supported and Rails 4 is no longer tested [#100](https://github.com/fgrehm/letter_opener_web/pull/100)
+
 ## [1.3.4](https://github.com/fgrehm/letter_opener_web/compare/v1.3.3...v1.3.4) (Apr 04, 2018)
 
 ### Fixed
