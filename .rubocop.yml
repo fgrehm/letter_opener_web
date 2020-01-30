@@ -1,6 +1,6 @@
 ---
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
   Exclude:
     - "spec/dummy/bin/**/*"
     - "tmp/**/*"
