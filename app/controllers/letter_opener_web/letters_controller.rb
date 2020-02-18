@@ -11,12 +11,19 @@ module LetterOpenerWeb
 
     def index
       @letters = Letter.search
+
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: @letters
+        end
+      end
     end
 
     def show
       text = @letter.send("#{params[:style]}_text")
-                    .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
-                    .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
+      text = rewrite_links(text)
+      text = remove_iframe(text) if params[:raw]
 
       render html: text.html_safe
     end
@@ -41,6 +48,17 @@ module LetterOpenerWeb
     end
 
     private
+
+    def rewrite_links(text)
+      text
+        .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
+        .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
+    end
+
+    def remove_iframe(text)
+      doc = Nokogiri::HTML(text)
+      doc.at('iframe').try(:attr, 'srcdoc') || text
+    end
 
     def check_style
       params[:style] = 'rich' unless %w[plain rich].include?(params[:style])

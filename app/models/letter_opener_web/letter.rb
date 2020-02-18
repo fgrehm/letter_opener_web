@@ -63,6 +63,22 @@ module LetterOpenerWeb
       File.exist?(base_dir)
     end
 
+    def subject
+      message_headers['Subject:']
+    end
+
+    def to
+      message_headers['To:']
+    end
+
+    def from
+      message_headers['From:']
+    end
+
+    def to_hash
+      { from: from, id: id, subject: subject, to: to }
+    end
+
     private
 
     def base_dir
@@ -104,6 +120,16 @@ module LetterOpenerWeb
           fixed_link.gsub!(img, fixed_img)
         end
       end
+    end
+
+    # Parse letter_openers special HTML header for metadata
+    def message_headers
+      headers = {}
+      doc = Nokogiri::HTML(read_file(default_style))
+      doc.css('#message_headers').search('dt').each do |node|
+        headers[node.text] = node.next_element.text
+      end
+      headers
     end
   end
 end
