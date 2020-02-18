@@ -54,12 +54,16 @@ config.action_mailer.delivery_method = :letter_opener_web
 config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
 ```
 
-If you're using `:letter_opener_web` as your delivery method, you can change the location of the letters by adding the
+If you're using `:letter_opener_web` as your delivery method and you want to customize some options then you can add the
 following to an initializer (or in development.rb):
 
 ```ruby
 LetterOpenerWeb.configure do |config|
+  # change the location of the letters
   config.letters_location = Rails.root.join('your', 'new', 'path')
+  
+  # set to true if you want to use the timezone of the application
+  config.letters_in_time_zone = false
 end
 ```
 
