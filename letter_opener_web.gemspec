@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'actionmailer', '>= 5.2'
   gem.add_dependency 'letter_opener', '~> 1.7'
   gem.add_dependency 'railties', '>= 5.2'
+  gem.add_dependency 'rexml'
 
   gem.add_development_dependency 'rails', '~> 6.1'
   gem.add_development_dependency 'rspec-rails', '~> 5.0'
