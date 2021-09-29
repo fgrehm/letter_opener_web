@@ -56,7 +56,7 @@ module LetterOpenerWeb
     end
 
     def delete
-      FileUtils.rm_rf("#{LetterOpenerWeb.config.letters_location}/#{id}")
+      FileUtils.rm_rf(base_dir)
     end
 
     def exists?
