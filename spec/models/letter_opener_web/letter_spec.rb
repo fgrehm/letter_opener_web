@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe LetterOpenerWeb::Letter do
-  let(:location) { File.expand_path('../../tmp', __dir__) }
+  let(:location) { Pathname.new(__dir__).join('..', '..', 'tmp').cleanpath }
 
   def rich_text(mail_id)
     <<-MAIL
@@ -128,13 +128,24 @@ Rich text for #{mail_id}
 
   describe '#delete' do
     let(:id) { '1111_1111' }
+
     subject { described_class.new(id: id).delete }
 
-    it'removes the letter with given id' do
+    it 'removes the letter with given id' do
       subject
       directories = Dir["#{location}/*"]
       expect(directories.count).to eql(1)
       expect(directories.first).not_to match(id)
+    end
+
+    context 'when the id is outside of the letters base path' do
+      let(:id) { '../3333_3333' }
+
+      it 'does not remove the letter' do
+        expect(FileUtils).not_to receive(:rm_rf).with(location.join(id).cleanpath.to_s)
+
+        expect(subject).to be_nil
+      end
     end
   end
 end

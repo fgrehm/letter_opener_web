@@ -48,7 +48,8 @@ module LetterOpenerWeb
 
     def load_letter
       @letter = Letter.find(params[:id])
-      head :not_found unless @letter.exists?
+
+      head :not_found unless @letter.valid?
     end
 
     def routes
