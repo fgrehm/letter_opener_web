@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.summary               = gem.description
   gem.homepage              = 'https://github.com/fgrehm/letter_opener_web'
   gem.license               = 'MIT'
-  gem.required_ruby_version = '>= 2.5'
+  gem.required_ruby_version = '>= 2.7'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^exe/}).map { |f| File.basename(f) }
