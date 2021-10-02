@@ -19,7 +19,7 @@ RSpec.describe LetterOpenerWeb::LettersController do
 
     it 'returns an HTML 200 response' do
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq('text/html')
+      expect(response.content_type).to eq('text/html; charset=utf-8')
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe LetterOpenerWeb::LettersController do
 
       it 'renders an HTML 200 response' do
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq('text/html')
+        expect(response.content_type).to eq('text/html; charset=utf-8')
       end
     end
 
