@@ -15,7 +15,7 @@ First add the gem to your development environment and run the `bundle` command t
 
 ```ruby
 group :development do
-  gem 'letter_opener_web', '~> 1.0'
+  gem 'letter_opener_web', '~> 2.0'
 end
 ```
 
@@ -33,8 +33,9 @@ And make sure you have [`:letter_opener` delivery method](https://github.com/rya
 configured for your app. Then visit `http://localhost:3000/letter_opener` after
 sending an email and have fun.
 
-If you are running the app from a [Vagrant](http://vagrantup.com) machine, you
-might want to skip `letter_opener`'s `launchy` calls and avoid messages like these:
+If you are running the app from a [Vagrant](http://vagrantup.com) machine or Docker
+container, you might want to skip `letter_opener`'s `launchy` calls and avoid messages
+like these:
 
 ```terminal
 12:33:42 web.1  | Failure in opening /vagrant/tmp/letter_opener/1358825621_ba83a22/rich.html
@@ -43,19 +44,16 @@ environment variable LAUNCHY_DEBUG=true or the '-d' commandline option and file 
 https://github.com/copiousfreetime/launchy/issues/new
 ```
 
-In that case (or if you just want to browse mails using the web interface), you
-can set `:letter_opener_web` as your delivery method on your
-`config/environments/development.rb`:
+In that case (or if you really just want to browse mails using the web interface and
+don't care about opening emails automatically), you can set `:letter_opener_web` as
+your delivery method on your `config/environments/development.rb`:
 
 ```ruby
 config.action_mailer.delivery_method = :letter_opener_web
-
-# If not everyone on the team is using vagrant
-config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
 ```
 
-If you're using `:letter_opener_web` as your delivery method, you can change the location of the letters by adding the
-following to an initializer (or in development.rb):
+If you're using `:letter_opener_web` as your delivery method, you can change the location of
+the letters by adding the following to an initializer (or in development.rb):
 
 ```ruby
 LetterOpenerWeb.configure do |config|
@@ -63,11 +61,14 @@ LetterOpenerWeb.configure do |config|
 end
 ```
 
-## Usage on Heroku
+## Usage on pre-production environments
 
-Some people use this gem on staging environments on Heroku and to set that up
-is just a matter of moving the gem out of the `development` group and enabling
-the route for all environments on your `routes.rb`.
+Some people use this gem on staging / pre-production environments to avoid having real emails
+being sent out. To set that up you'll need to:
+
+1. Move the gem out of the `development` group in your `Gemfile`
+2. Set `config.action_mailer.delivery_method` on the appropriate `config/environments/<env>.rb`
+3. Enable the route for the environments on your `routes.rb`.
 
 In other words, your `Gemfile` will have:
 
@@ -79,20 +80,28 @@ And your `routes.rb`:
 
 ```ruby
 Your::Application.routes.draw do
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  # If you have a dedicated config/environments/staging.rb
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.staging?
+
+  # If you use RAILS_ENV=production in staging environments, you'll need another
+  # way to disable it in "real production"
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" unless ENV["PRODUCTION_FOR_REAL"]
 end
 ```
 
 You might also want to have a look at the sources for the [demo](http://letter-opener-web.herokuapp.com)
 available at https://github.com/fgrehm/letter_opener_web_demo.
 
-**NOTICE: Using this gem on Heroku will only work if your app has just one Dyno and does not send emails from background jobs. For updates on this matter please subscribe to [GH-35](https://github.com/fgrehm/letter_opener_web/issues/35)**
+**NOTICE: Using this gem on Heroku will only work if your app has just one Dyno
+and does not send emails from background jobs. For updates on this matter please
+subscribe to [GH-35](https://github.com/fgrehm/letter_opener_web/issues/35)**
 
 ## Acknowledgements
 
 Special thanks to [@alexrothenberg](https://github.com/alexrothenberg) for some
-ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12).
-
+ideas on [this pull request](https://github.com/ryanb/letter_opener/pull/12) and
+[@pseudomuto](https://github.com/pseudomuto) for keeping the project alive for a
+few years.
 
 ## Contributing
 

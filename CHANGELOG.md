@@ -1,3 +1,5 @@
+## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...next)
+
 ## [1.4.1](https://github.com/fgrehm/letter_opener_web/compare/v1.4.0...v1.4.1) (Oct 5, 2021)
 
   - Ensure letter is within letters base path [#110](https://github.com/fgrehm/letter_opener_web/pull/110)
