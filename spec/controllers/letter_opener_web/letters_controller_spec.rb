@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe LetterOpenerWeb::LettersController do
+RSpec.describe LetterOpenerWeb::LettersController do
   routes { LetterOpenerWeb::Engine.routes }
 
   after(:each) { LetterOpenerWeb.reset! }

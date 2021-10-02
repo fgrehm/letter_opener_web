@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'letter_opener_web/version'
 require 'letter_opener_web/engine'
 require 'rexml/document'
 

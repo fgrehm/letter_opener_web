@@ -20,12 +20,12 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_dependency 'actionmailer', '>= 3.2'
-  gem.add_dependency 'letter_opener', '~> 1.0'
-  gem.add_dependency 'railties', '>= 3.2'
+  gem.add_dependency 'actionmailer', '>= 5.2'
+  gem.add_dependency 'letter_opener', '~> 1.7'
+  gem.add_dependency 'railties', '>= 5.2'
 
-  gem.add_development_dependency 'rails', '~> 5.0'
-  gem.add_development_dependency 'rspec-rails', '~> 3.0'
-  gem.add_development_dependency 'rubocop', '~> 0.79'
-  gem.add_development_dependency 'shoulda-matchers', '~> 2.5'
+  gem.add_development_dependency 'rails', '~> 6.1'
+  gem.add_development_dependency 'rspec-rails', '~> 5.0'
+  gem.add_development_dependency 'rubocop', '~> 1.22'
+  gem.add_development_dependency 'shoulda-matchers', '~> 5.0'
 end

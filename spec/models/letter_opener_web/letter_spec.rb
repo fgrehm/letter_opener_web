@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe LetterOpenerWeb::Letter do
+RSpec.describe LetterOpenerWeb::Letter do
   let(:location) { Pathname.new(__dir__).join('..', '..', 'tmp').cleanpath }
 
   def rich_text(mail_id)

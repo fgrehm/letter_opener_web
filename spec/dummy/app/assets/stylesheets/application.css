@@ -13,19 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-body {
-  padding-top: 20px;
-}
-
-.alert {
-  margin-top: 20px;
-}
-
-h1, .footer {
-  text-align: center;
-}
-
-.icon-white {
-  background-image: url(<%=asset_path "letter_opener_web/glyphicons-halflings-white.png"%>);
-}
