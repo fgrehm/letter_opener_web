@@ -4,16 +4,16 @@ RSpec.describe LetterOpenerWeb::Letter do
   let(:location) { Pathname.new(__dir__).join('..', '..', 'tmp').cleanpath }
 
   def rich_text(mail_id)
-    <<-MAIL
-Rich text for #{mail_id}
-<!DOCTYPE html>
-<a href='a-link.html'>
-  <img src='an-image.jpg'>
-  Link text
-</a>
-<a href='fooo.html'>Bar</a>
-<a href="example.html" class="blank"></a>
-<address><a href="inside-address.html">inside address</a></address>
+    <<~MAIL
+      Rich text for #{mail_id}
+      <!DOCTYPE html>
+      <a href='a-link.html'>
+        <img src='an-image.jpg'>
+        Link text
+      </a>
+      <a href='fooo.html'>Bar</a>
+      <a href="example.html" class="blank"></a>
+      <address><a href="inside-address.html">inside address</a></address>
     MAIL
   end
 

@@ -6,18 +6,6 @@ AllCops:
     - "tmp/**/*"
     - "vendor/**/*"
 
-Layout/HeredocIndentation:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  EnforcedStyle: nested
-
-Style/SingleLineBlockParams:
-  Enabled: false
-
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb

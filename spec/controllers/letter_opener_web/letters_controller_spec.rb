@@ -89,7 +89,7 @@ RSpec.describe LetterOpenerWeb::LettersController do
 
     it 'sends the file as an inline attachment' do
       allow(controller).to receive(:send_file) { controller.head :ok }
-      get :attachment, params: { id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..-1] }
+      get :attachment, params: { id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..] }
 
       expect(response.status).to eq(200)
       expect(controller).to have_received(:send_file)
