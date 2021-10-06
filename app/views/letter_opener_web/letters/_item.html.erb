@@ -1,0 +1,5 @@
+<% classes = %w(list-group-item list-group-action message-headers) %>
+<% classes << 'active' if active %>
+<%= link_to(letter_path(letter, style: letter.default_style), class: classes, target: 'mail') do %>
+  <%= letter.headers %>
+<% end %>
