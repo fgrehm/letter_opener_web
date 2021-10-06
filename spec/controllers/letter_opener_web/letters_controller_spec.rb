@@ -32,7 +32,7 @@ describe LetterOpenerWeb::LettersController do
     shared_examples 'found letter examples' do |letter_style|
       before(:each) do
         expect(LetterOpenerWeb::Letter).to receive(:find).with(id).and_return(letter)
-        expect(letter).to receive(:exists?).and_return(true)
+        expect(letter).to receive(:valid?).and_return(true)
         get :show, params: { id: id, style: letter_style }
       end
 
@@ -84,7 +84,7 @@ describe LetterOpenerWeb::LettersController do
 
     before do
       allow(LetterOpenerWeb::Letter).to receive(:find).with(id).and_return(letter)
-      allow(letter).to receive(:exists?).and_return(true)
+      allow(letter).to receive(:valid?).and_return(true)
     end
 
     it 'sends the file as an inline attachment' do
@@ -118,9 +118,20 @@ describe LetterOpenerWeb::LettersController do
     let(:id) { 'an-id' }
 
     it 'removes the selected letter' do
-      allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:exists?).and_return(true)
+      allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:valid?).and_return(true)
       expect_any_instance_of(LetterOpenerWeb::Letter).to receive(:delete)
       delete :destroy, params: { id: id }
+    end
+
+    it 'throws a 404 if attachment is outside of the letters base path' do
+      bad_id = '../an-id'
+
+      allow_any_instance_of(LetterOpenerWeb::Letter).to receive(:valid?).and_return(false)
+      expect_any_instance_of(LetterOpenerWeb::Letter).not_to receive(:delete)
+
+      delete :destroy, params: { id: bad_id }
+
+      expect(response.status).to eq(404)
     end
   end
 end

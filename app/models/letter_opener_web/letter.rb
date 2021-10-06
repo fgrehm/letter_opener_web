@@ -56,17 +56,19 @@ module LetterOpenerWeb
     end
 
     def delete
-      FileUtils.rm_rf("#{LetterOpenerWeb.config.letters_location}/#{id}")
+      return unless valid?
+
+      FileUtils.rm_rf(base_dir.to_s)
     end
 
-    def exists?
-      File.exist?(base_dir)
+    def valid?
+      exists? && base_dir_within_letters_location?
     end
 
     private
 
     def base_dir
-      "#{LetterOpenerWeb.config.letters_location}/#{id}"
+      LetterOpenerWeb.config.letters_location.join(id).cleanpath
     end
 
     def read_file(style)
@@ -75,6 +77,14 @@ module LetterOpenerWeb
 
     def style_exists?(style)
       File.exist?("#{base_dir}/#{style}.html")
+    end
+
+    def exists?
+      File.exist?(base_dir)
+    end
+
+    def base_dir_within_letters_location?
+      base_dir.to_s.start_with?(LetterOpenerWeb.config.letters_location.to_s)
     end
 
     def adjust_link_targets(contents)
