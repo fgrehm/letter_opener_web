@@ -7,13 +7,24 @@ RSpec.describe LetterOpenerWeb::Letter do
     <<~MAIL
       Rich text for #{mail_id}
       <!DOCTYPE html>
-      <a href='a-link.html'>
-        <img src='an-image.jpg'>
-        Link text
-      </a>
-      <a href='fooo.html'>Bar</a>
-      <a href="example.html" class="blank"></a>
-      <address><a href="inside-address.html">inside address</a></address>
+      <body>
+        <div id="container">
+          <div id="message_headers">
+            <dl>
+              <dt>From:</dt>
+              <dd>noreply@example.com</dd>
+            </dl>
+          </div>
+
+          <a href='a-link.html'>
+            <img src='an-image.jpg'>
+            Link text
+          </a>
+          <a href='fooo.html'>Bar</a>
+          <a href="example.html" class="blank"></a>
+          <address><a href="inside-address.html">inside address</a></address>
+        </div>
+      </body>
     MAIL
   end
 
@@ -45,9 +56,10 @@ RSpec.describe LetterOpenerWeb::Letter do
     it 'changes links to show up on a new window' do
       link_html = [
         "<a href='a-link.html' target='_blank'>",
-        "<img src='an-image.jpg'/>",
-        "Link text\n</a>"
-      ].join("\n  ")
+        "  <img src='an-image.jpg'/>",
+        '  Link text',
+        '</a>'
+      ].join("\n    ")
 
       expect(subject).to include(link_html)
     end
