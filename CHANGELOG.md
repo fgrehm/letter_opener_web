@@ -1,8 +1,15 @@
 ## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...next)
 
-#### BUGFIXES
-
+  - Require Rails >= 5.2, run tests against Rails 6.1 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
+  - Upgrade to Bootstrap 4.2 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
+  - Inline CSS and Javascript [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
   - Add rexml gem into dependency for Ruby 3.0 [#160](https://github.com/fgrehm/letter_opener_web/pull/106)
+  - Add routes for Rails API mode [#69](https://github.com/fgrehm/letter_opener_web/pull/69)
+  - Prevent name conflict with `Letter` class [#108](https://github.com/fgrehm/letter_opener_web/pull/108)
+  - Add Rails' built-in CSRF protection [#111](https://github.com/fgrehm/letter_opener_web/pull/111)
+  - Add Rails' CSP nonce to the script tag [#112](https://github.com/fgrehm/letter_opener_web/pull/112)
+  - Update dev dependencies [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
+  - Switched to using GitHub actions as CI for the project [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
 
 ## [1.4.1](https://github.com/fgrehm/letter_opener_web/compare/v1.4.0...v1.4.1) (Oct 5, 2021)
 
