@@ -1,7 +1,7 @@
 <%= render "layouts/letter_opener_web/js/jquery" %>
 <%= render "layouts/letter_opener_web/js/favcount" %>
 
-<script>
+<script nonce="<%= content_security_policy_nonce %>">
 function update_favicon(favicon) {
     favicon.set($('.letter-opener a').length);
 }
