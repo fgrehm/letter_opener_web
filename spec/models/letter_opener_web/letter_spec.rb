@@ -47,6 +47,20 @@ RSpec.describe LetterOpenerWeb::Letter do
     FileUtils.rm_rf(location)
   end
 
+  describe 'rich text headers' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id).headers }
+
+    it { is_expected.to eq('UNABLE TO PARSE HEADERS') }
+  end
+
+  describe 'plain text headers' do
+    let(:id) { '2222_2222' }
+    subject { described_class.new(id: id).headers }
+
+    it { is_expected.to eq('UNABLE TO PARSE HEADERS') }
+  end
+
   describe 'rich text version' do
     let(:id) { '1111_1111' }
     subject { described_class.new(id: id).rich_text }

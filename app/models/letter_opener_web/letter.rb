@@ -40,7 +40,7 @@ module LetterOpenerWeb
       # NOTE: This is ugly, we should look into using nokogiri and making that a
       # dependency of this gem
       match_data = html.match(%r{<body>\s*<div[^>]+id="container">\s*<div[^>]+id="message_headers">\s*(<dl>.+</dl>)}m)
-      return remove_attachments_link(match_data[1]).html_safe if match_data[1].present?
+      return remove_attachments_link(match_data[1]).html_safe if match_data && match_data[1].present?
 
       'UNABLE TO PARSE HEADERS'
     end
