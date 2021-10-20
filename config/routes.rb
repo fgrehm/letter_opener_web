@@ -6,4 +6,6 @@ LetterOpenerWeb::Engine.routes.draw do
   get    '/'                     => 'letters#index',    as: :letters
   get    ':id(/:style)'          => 'letters#show',     as: :letter
   get    ':id/attachments/:file' => 'letters#attachment'
+  post   'clear'                 => 'letters#clear'
+  post   ':id'                   => 'letters#destroy'
 end
