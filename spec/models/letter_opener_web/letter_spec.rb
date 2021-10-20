@@ -51,12 +51,20 @@ RSpec.describe LetterOpenerWeb::Letter do
     let(:id) { '1111_1111' }
     subject { described_class.new(id: id).headers }
 
-    it { is_expected.to eq('UNABLE TO PARSE HEADERS') }
+    before do
+      FileUtils.rm_rf("#{location}/#{id}/plain.html")
+    end
+
+    it { is_expected.to match(%r{<dl>\s*<dt>From:</dt>\s*<dd>noreply@example\.com</dd>}m) }
   end
 
   describe 'plain text headers' do
-    let(:id) { '2222_2222' }
+    let(:id) { '1111_1111' }
     subject { described_class.new(id: id).headers }
+
+    before do
+      FileUtils.rm_rf("#{location}/#{id}/rich.html")
+    end
 
     it { is_expected.to eq('UNABLE TO PARSE HEADERS') }
   end

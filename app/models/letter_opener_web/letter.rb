@@ -34,8 +34,8 @@ module LetterOpenerWeb
     end
 
     def headers
-      html = read_file(:plain) if style_exists?('plain')
-      html ||= read_file(:rich)
+      html = read_file(:rich) if style_exists?('rich')
+      html ||= read_file(:plain)
 
       # NOTE: This is ugly, we should look into using nokogiri and making that a
       # dependency of this gem
