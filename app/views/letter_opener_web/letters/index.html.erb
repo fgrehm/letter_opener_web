@@ -5,7 +5,7 @@
       <%= link_to letters_path, class: 'btn btn-primary refresh' do %>
         Refresh
       <% end %>
-      <%= link_to clear_letters_path, method: 'delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+      <%= link_to clear_letters_path, method: 'post', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
         Clear
       <% end %>
     </span>
