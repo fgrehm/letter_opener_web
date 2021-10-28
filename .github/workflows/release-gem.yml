@@ -2,6 +2,10 @@ name: Ruby Gem
 
 on:
   workflow_dispatch:
+    inputs:
+      dummy:
+        required: false
+        default: 'dummy'
 
 jobs:
   build:
