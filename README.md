@@ -1,6 +1,6 @@
 # letter_opener_web
 
-[![Build Status](https://travis-ci.org/fgrehm/letter_opener_web.svg?branch=master)](https://travis-ci.org/fgrehm/letter_opener_web)
+[![Build Status](https://github.com/fgrehm/letter_opener_web/actions/workflows/main.yml/badge.svg)]
 [![Gem Version](https://badge.fury.io/rb/letter_opener_web.svg)](http://badge.fury.io/rb/letter_opener_web)
 [![Code Climate](https://codeclimate.com/github/fgrehm/letter_opener_web.svg)](https://codeclimate.com/github/fgrehm/letter_opener_web)
 
