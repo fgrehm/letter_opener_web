@@ -29,3 +29,6 @@ jobs:
 
       - name: Run tests
         run: bundle exec rake
+
+      - name: Build gem
+        run: bundle exec rake build

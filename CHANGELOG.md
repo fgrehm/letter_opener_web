@@ -1,4 +1,4 @@
-## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...next)
+## [v2.0.0](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...next)
 
   - Require Rails >= 5.2, run tests against Rails 6.1 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
   - Upgrade to Bootstrap 4.2 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
