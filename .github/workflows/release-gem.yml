@@ -1,11 +1,9 @@
 name: Release gem
 
 on:
-  workflow_dispatch:
-    inputs:
-      dummy:
-        required: false
-        default: 'dummy'
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
