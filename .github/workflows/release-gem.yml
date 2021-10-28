@@ -1,4 +1,4 @@
-name: Ruby Gem
+name: Release gem
 
 on:
   workflow_dispatch:
@@ -11,8 +11,6 @@ jobs:
   build:
     name: Build + Publish
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - uses: actions/checkout@v2
