@@ -3,7 +3,7 @@
   - Require Rails >= 5.2, run tests against Rails 6.1 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
   - Upgrade to Bootstrap 4.2 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
   - Inline CSS and Javascript [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
-  - Add rexml gem into dependency for Ruby 3.0 [#160](https://github.com/fgrehm/letter_opener_web/pull/106)
+  - Add rexml gem into dependency for Ruby 3.0 [#106](https://github.com/fgrehm/letter_opener_web/pull/106)
   - Add routes for Rails API mode [#69](https://github.com/fgrehm/letter_opener_web/pull/69)
   - Prevent name conflict with `Letter` class [#108](https://github.com/fgrehm/letter_opener_web/pull/108)
   - Add Rails' built-in CSRF protection [#111](https://github.com/fgrehm/letter_opener_web/pull/111)
