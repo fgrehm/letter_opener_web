@@ -37,7 +37,10 @@ module LetterOpenerWeb
 
     def destroy
       @letter.delete
-      redirect_to routes.letters_path
+      respond_to do |format|
+        format.html { redirect_to routes.letters_path }
+        format.js { render js: "window.location='#{routes.letters_path}'" }
+      end
     end
 
     private

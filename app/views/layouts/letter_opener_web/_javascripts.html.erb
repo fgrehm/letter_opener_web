@@ -13,8 +13,8 @@ jQuery(function($) {
     $('.letter-opener').on('click', 'a', function() {
         var $this = $(this);
         $('iframe').attr('src', $this.attr('href'));
-        $this.parent().find('.active').removeClass('active');
-        $this.addClass('active');
+        $this.parents('.list-group').find('.active').removeClass('active');
+        $this.parent().addClass('active');
     });
 
     $('.refresh').click(function(e) {

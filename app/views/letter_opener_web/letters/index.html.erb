@@ -11,12 +11,12 @@
     </span>
   </h1>
     <div class="letter-opener" data-letters-path="<%= letters_path %>">
-      <div class="list-group pt-2">
+      <ul class="list-group rounded-0 pt-2">
         <% if first_letter = @letters.shift %>
           <%= render partial: "item", locals: { letter: first_letter, active: true } %>
         <% end %>
         <%= render partial: "item", collection: @letters, as: :letter, locals: { active: false } %>
-      </div>
+      </ul>
     </div>
 </div>
 <div class="col right">
