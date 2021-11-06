@@ -1,8 +1,8 @@
-## [v2.0.0](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...next)
+## [v2.0.0](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...v2.0.0)
 
   - Require Rails >= 5.2, run tests against Rails 6.1 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
-  - Upgrade to Bootstrap 4.2 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
-  - Inline CSS and Javascript [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
+  - Inline CSS and Javascript, to avoid dependency on asset pipeline [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
+  - Upgrade to Bootstrap 5.1.1 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
   - Add rexml gem into dependency for Ruby 3.0 [#106](https://github.com/fgrehm/letter_opener_web/pull/106)
   - Add routes for Rails API mode [#69](https://github.com/fgrehm/letter_opener_web/pull/69)
   - Prevent name conflict with `Letter` class [#108](https://github.com/fgrehm/letter_opener_web/pull/108)
