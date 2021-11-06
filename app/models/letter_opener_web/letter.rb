@@ -33,6 +33,18 @@ module LetterOpenerWeb
       @sent_at = params[:sent_at]
     end
 
+    def headers
+      html = read_file(:rich) if style_exists?('rich')
+      html ||= read_file(:plain)
+
+      # NOTE: This is ugly, we should look into using nokogiri and making that a
+      # dependency of this gem
+      match_data = html.match(%r{<body>\s*<div[^>]+id="container">\s*<div[^>]+id="message_headers">\s*(<dl>.+</dl>)}m)
+      return remove_attachments_link(match_data[1]).html_safe if match_data && match_data[1].present?
+
+      'UNABLE TO PARSE HEADERS'
+    end
+
     def plain_text
       @plain_text ||= adjust_link_targets(read_file(:plain))
     end
@@ -67,6 +79,15 @@ module LetterOpenerWeb
 
     private
 
+    def remove_attachments_link(headers)
+      xml = REXML::Document.new(headers)
+      if xml.root.elements.size == 10
+        xml.delete_element('//dd[last()]')
+        xml.delete_element('//dt[last()]')
+      end
+      xml.to_s
+    end
+
     def base_dir
       LetterOpenerWeb.config.letters_location.join(id).cleanpath
     end
@@ -88,7 +109,7 @@ module LetterOpenerWeb
     end
 
     def adjust_link_targets(contents)
-      # We cannot feed the whole file to an XML parser as some mails are
+      # We cannot feed the whole file to a XML parser as some mails are
       # "complete" (as in they have the whole <html> structure) and letter_opener
       # prepends some information about the mail being sent, making REXML
       # complain about it

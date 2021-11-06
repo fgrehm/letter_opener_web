@@ -10,7 +10,7 @@ module LetterOpenerWeb
     before_action :load_letter, only: %i[show attachment destroy]
 
     def index
-      @letters = Letter.search
+      @letters = LetterOpenerWeb::Letter.search
     end
 
     def show
@@ -31,13 +31,16 @@ module LetterOpenerWeb
     end
 
     def clear
-      Letter.destroy_all
+      LetterOpenerWeb::Letter.destroy_all
       redirect_to routes.letters_path
     end
 
     def destroy
       @letter.delete
-      redirect_to routes.letters_path
+      respond_to do |format|
+        format.html { redirect_to routes.letters_path }
+        format.js { render js: "window.location='#{routes.letters_path}'" }
+      end
     end
 
     private
@@ -47,7 +50,7 @@ module LetterOpenerWeb
     end
 
     def load_letter
-      @letter = Letter.find(params[:id])
+      @letter = LetterOpenerWeb::Letter.find(params[:id])
 
       head :not_found unless @letter.valid?
     end

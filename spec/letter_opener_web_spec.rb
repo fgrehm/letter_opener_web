@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe LetterOpenerWeb do
+RSpec.describe LetterOpenerWeb do
   subject { described_class }
   after(:each) { described_class.reset! }
 

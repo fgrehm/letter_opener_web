@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe LetterOpenerWeb::LettersController do
+RSpec.describe LetterOpenerWeb::LettersController do
   routes { LetterOpenerWeb::Engine.routes }
 
   after(:each) { LetterOpenerWeb.reset! }
@@ -19,7 +19,7 @@ describe LetterOpenerWeb::LettersController do
 
     it 'returns an HTML 200 response' do
       expect(response.status).to eq(200)
-      expect(response.content_type).to eq('text/html')
+      expect(response.content_type).to eq('text/html; charset=utf-8')
     end
   end
 
@@ -38,7 +38,7 @@ describe LetterOpenerWeb::LettersController do
 
       it 'renders an HTML 200 response' do
         expect(response.status).to eq(200)
-        expect(response.content_type).to eq('text/html')
+        expect(response.content_type).to eq('text/html; charset=utf-8')
       end
     end
 
@@ -89,7 +89,7 @@ describe LetterOpenerWeb::LettersController do
 
     it 'sends the file as an inline attachment' do
       allow(controller).to receive(:send_file) { controller.head :ok }
-      get :attachment, params: { id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..-1] }
+      get :attachment, params: { id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..] }
 
       expect(response.status).to eq(200)
       expect(controller).to have_received(:send_file)

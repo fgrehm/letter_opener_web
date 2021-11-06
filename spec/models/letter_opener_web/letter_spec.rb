@@ -1,19 +1,30 @@
 # frozen_string_literal: true
 
-describe LetterOpenerWeb::Letter do
+RSpec.describe LetterOpenerWeb::Letter do
   let(:location) { Pathname.new(__dir__).join('..', '..', 'tmp').cleanpath }
 
   def rich_text(mail_id)
-    <<-MAIL
-Rich text for #{mail_id}
-<!DOCTYPE html>
-<a href='a-link.html'>
-  <img src='an-image.jpg'>
-  Link text
-</a>
-<a href='fooo.html'>Bar</a>
-<a href="example.html" class="blank"></a>
-<address><a href="inside-address.html">inside address</a></address>
+    <<~MAIL
+      Rich text for #{mail_id}
+      <!DOCTYPE html>
+      <body>
+        <div id="container">
+          <div id="message_headers">
+            <dl>
+              <dt>From:</dt>
+              <dd>noreply@example.com</dd>
+            </dl>
+          </div>
+
+          <a href='a-link.html'>
+            <img src='an-image.jpg'>
+            Link text
+          </a>
+          <a href='fooo.html'>Bar</a>
+          <a href="example.html" class="blank"></a>
+          <address><a href="inside-address.html">inside address</a></address>
+        </div>
+      </body>
     MAIL
   end
 
@@ -36,6 +47,28 @@ Rich text for #{mail_id}
     FileUtils.rm_rf(location)
   end
 
+  describe 'rich text headers' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id).headers }
+
+    before do
+      FileUtils.rm_rf("#{location}/#{id}/plain.html")
+    end
+
+    it { is_expected.to match(%r{<dl>\s*<dt>From:</dt>\s*<dd>noreply@example\.com</dd>}m) }
+  end
+
+  describe 'plain text headers' do
+    let(:id) { '1111_1111' }
+    subject { described_class.new(id: id).headers }
+
+    before do
+      FileUtils.rm_rf("#{location}/#{id}/rich.html")
+    end
+
+    it { is_expected.to eq('UNABLE TO PARSE HEADERS') }
+  end
+
   describe 'rich text version' do
     let(:id) { '1111_1111' }
     subject { described_class.new(id: id).rich_text }
@@ -45,9 +78,10 @@ Rich text for #{mail_id}
     it 'changes links to show up on a new window' do
       link_html = [
         "<a href='a-link.html' target='_blank'>",
-        "<img src='an-image.jpg'/>",
-        "Link text\n</a>"
-      ].join("\n  ")
+        "  <img src='an-image.jpg'/>",
+        '  Link text',
+        '</a>'
+      ].join("\n    ")
 
       expect(subject).to include(link_html)
     end

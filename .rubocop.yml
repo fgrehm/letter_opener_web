@@ -1,22 +1,13 @@
 ---
+inherit_from: .rubocop_todo.yml
+
 AllCops:
-  TargetRubyVersion: 2.5
+  NewCops: enable
+  TargetRubyVersion: 2.7
   Exclude:
     - "spec/dummy/bin/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
-
-Layout/HeredocIndentation:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  EnforcedStyle: nested
-
-Style/SingleLineBlockParams:
-  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
