@@ -126,15 +126,8 @@ module LetterOpenerWeb
     end
 
     def fix_link_html(link_html)
-      # REFACTOR: we need a better way of fixing the link inner html
-      link_html.dup.tap do |fixed_link|
-        fixed_link.gsub!('<br>', '<br/>')
-        fixed_link.scan(/<img(?:[^>]+?)>/).each do |img|
-          fixed_img = img.dup
-          fixed_img.gsub!(/>$/, '/>') unless img =~ %r{/>$}
-          fixed_link.gsub!(img, fixed_img)
-        end
-      end
+      link_html.gsub!('<br>', '<br/>')
+      link_html.gsub(/<img(?:[^>]+?)>/) { |img| img =~ %r{/>$} ? img : img.gsub!(/>$/, '/>') }
     end
   end
 end
