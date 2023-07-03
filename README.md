@@ -7,7 +7,7 @@
 Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
 browsing sent emails.
 
-Check out http://letter-opener-web.herokuapp.com to see it in action.
+Check out [https://letter-opener-web.fly.dev](https://letter-opener-web.fly.dev) to see it in action.
 
 ## Installation
 
@@ -89,7 +89,7 @@ Your::Application.routes.draw do
 end
 ```
 
-You might also want to have a look at the sources for the [demo](http://letter-opener-web.herokuapp.com)
+You might also want to have a look at the sources for the [demo](https://letter-opener-web.fly.dev)
 available at https://github.com/fgrehm/letter_opener_web_demo.
 
 **NOTICE: Using this gem on Heroku will only work if your app has just one Dyno
