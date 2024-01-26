@@ -112,7 +112,8 @@ If you are using this gem on Heroku and your application is not using one Dyno o
       "Action": [
           "s3:PutObject",
           "s3:PutObjectAcl",
-          "s3:GetObject"
+          "s3:GetObject",
+          "s3:DeleteObject*"
       ],
       "Resource": "arn:aws:s3:::your-bucket-name/*"
     },
