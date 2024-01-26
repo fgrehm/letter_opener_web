@@ -6,6 +6,8 @@ module LetterOpenerWeb
       letters = LetterOpenerWeb.aws_client.list_objects_v2(bucket: LetterOpenerWeb.config.aws_bucket, delimiter: '/').common_prefixes.map do |folder|
         new(id: folder.prefix.gsub('/', ''))
       end
+
+      letters.reverse
     end
 
     def self.destroy_all
