@@ -7,6 +7,151 @@ RSpec.describe LetterOpenerWeb::LettersController do
 
   after(:each) { LetterOpenerWeb.reset! }
 
+  context 'when letters location is on AWS S3 bucket' do
+    before do
+      LetterOpenerWeb.configure do |config|
+        config.aws_access_key_id = 'aws_access_key_id'
+        config.aws_secret_access_key = 'aws_secret_access_key'
+        config.aws_region = 'aws_region'
+        config.aws_bucket = 'aws_bucket'
+        config.letters_location = :s3
+      end
+    end
+
+    describe 'GET index' do
+      before do
+        allow(LetterOpenerWeb::AwsLetter).to receive(:search)
+        get :index
+      end
+  
+      it 'searches for all letters' do
+        expect(LetterOpenerWeb::AwsLetter).to have_received(:search)
+      end
+  
+      it 'returns an HTML 200 response' do
+        expect(response.status).to eq(200)
+        expect(response.content_type).to eq('text/html; charset=utf-8')
+      end
+    end
+
+    describe 'GET show' do
+      let(:id)         { 'an-id' }
+      let(:rich_text)  { 'rich text href="plain.html"' }
+      let(:plain_text) { 'plain text href="rich.html"' }
+      let(:letter)     { double(:letter, rich_text: rich_text, plain_text: plain_text, id: id) }
+  
+      shared_examples 'found letter examples' do |letter_style|
+        before(:each) do
+          expect(LetterOpenerWeb::AwsLetter).to receive(:find).with(id).and_return(letter)
+          expect(letter).to receive(:valid?).and_return(true)
+          get :show, params: { id: id, style: letter_style }
+        end
+  
+        it 'renders an HTML 200 response' do
+          expect(response.status).to eq(200)
+          expect(response.content_type).to eq('text/html; charset=utf-8')
+        end
+      end
+  
+      context 'rich text version' do
+        include_examples 'found letter examples', 'rich'
+  
+        it 'renders the rich text contents' do
+          expect(response.body).to match(/^rich text/)
+        end
+  
+        it 'fixes plain text link' do
+          expect(response.body).not_to match(/href="plain.html"/)
+          expect(response.body).to match(/href="#{Regexp.escape letter_path(id: id, style: 'plain')}"/)
+        end
+      end
+  
+      context 'plain text version' do
+        include_examples 'found letter examples', 'plain'
+  
+        it 'renders the plain text contents' do
+          expect(response.body).to match(/^plain text/)
+        end
+  
+        it 'fixes rich text link' do
+          expect(response.body).not_to match(/href="rich.html"/)
+          expect(response.body).to match(/href="#{Regexp.escape letter_path(id: id, style: 'rich')}"/)
+        end
+      end
+  
+      context 'with wrong parameters' do
+        it 'should return 404 when invalid id given' do
+          letter = double(:letter, attachments: {}, valid?: false)
+          allow(LetterOpenerWeb::AwsLetter).to receive(:find).with(id).and_return(letter)
+
+          get :show, params: { id: id, style: 'rich' }
+          expect(response.status).to eq(404)
+        end
+      end
+    end
+  
+    describe 'GET attachment' do
+      let(:id)              { 'an-id' }
+      let(:attachment_path) { 'path/to/attachment' }
+      let(:file_name)       { 'image.jpg' }
+      let(:letter)          { double(:letter, attachments: { file_name => attachment_path }, id: id) }
+  
+      before do
+        allow(LetterOpenerWeb::AwsLetter).to receive(:find).with(id).and_return(letter)
+        allow(letter).to receive(:valid?).and_return(true)
+      end
+  
+      it 'redirects to the s3 file' do
+        allow(controller).to receive(:redirect_to) { controller.head :found }
+        get :attachment, params: { id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..] }
+  
+        expect(response.status).to eq(302)
+        expect(controller).to have_received(:redirect_to)
+          .with(attachment_path, allow_other_host: true)
+      end
+  
+      it "throws a 404 if attachment file can't be found" do
+        get :attachment, params: { id: id, file: 'unknown', format: 'woot' }
+        expect(response.status).to eq(404)
+      end
+    end
+  
+    describe 'DELETE clear' do
+      before { allow(LetterOpenerWeb::AwsLetter).to receive(:destroy_all) }
+
+      it 'removes all letters' do
+        delete :clear
+        expect(LetterOpenerWeb::AwsLetter).to have_received(:destroy_all)
+      end
+  
+      it 'redirects back to index' do
+        delete :clear
+        expect(response).to redirect_to(letters_path)
+      end
+    end
+  
+    describe 'DELETE destroy' do
+      let(:id) { 'an-id' }
+  
+      it 'removes the selected letter' do
+        allow_any_instance_of(LetterOpenerWeb::AwsLetter).to receive(:valid?).and_return(true)
+        expect_any_instance_of(LetterOpenerWeb::AwsLetter).to receive(:delete)
+        delete :destroy, params: { id: id }
+      end
+  
+      it 'throws a 404 if attachment is not present on s3' do
+        bad_id = '../an-id'
+  
+        allow_any_instance_of(LetterOpenerWeb::AwsLetter).to receive(:valid?).and_return(false)
+        expect_any_instance_of(LetterOpenerWeb::AwsLetter).not_to receive(:delete)
+  
+        delete :destroy, params: { id: bad_id }
+  
+        expect(response.status).to eq(404)
+      end
+    end
+  end
+
   describe 'GET index' do
     before do
       allow(LetterOpenerWeb::Letter).to receive(:search)
