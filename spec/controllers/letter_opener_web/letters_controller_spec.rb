@@ -87,17 +87,35 @@ RSpec.describe LetterOpenerWeb::LettersController do
       allow(letter).to receive(:valid?).and_return(true)
     end
 
-    it 'sends the file as an inline attachment' do
-      allow(controller).to receive(:send_file) { controller.head :ok }
-      get :attachment, params: { id: id, file: file_name.gsub(/\.\w+/, ''), format: File.extname(file_name)[1..] }
+    context 'when the file exists' do
+      before do
+        # Stub a 200 response b/c `send_file` will 204 when the file doesn't actually exist
+        allow(controller).to receive(:send_file) { controller.head :ok }
+      end
 
-      expect(response.status).to eq(200)
-      expect(controller).to have_received(:send_file)
-        .with(attachment_path, filename: file_name, disposition: 'inline')
+      it 'sends the file as an inline attachment' do
+        get :attachment, params: { id: id, file: file_name }
+
+        expect(response.status).to eq(200)
+        expect(controller).to have_received(:send_file)
+          .with(attachment_path, filename: file_name, disposition: 'inline')
+      end
+
+      context 'when file name includes a dot' do
+        let(:file_name) { 'image.dot.jpg' }
+
+        it 'sends the file as an inline attachment' do
+          expect(controller).to receive(:send_file).with(attachment_path, filename: file_name,
+                                                                          disposition: 'inline')
+          get :attachment, params: { id: id, file: file_name }
+          expect(response.status).to eq(200)
+        end
+      end
     end
 
-    it "throws a 404 if attachment file can't be found" do
-      get :attachment, params: { id: id, file: 'unknown', format: 'woot' }
+    it "returns a 404 if attachment file can't be found" do
+      get :attachment, params: { id: id, file: 'unknown.woot' }
+
       expect(response.status).to eq(404)
     end
   end
