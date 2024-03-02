@@ -12,6 +12,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
+    - 'app/controllers/letter_opener_web/application_controller.rb'
     - 'app/controllers/letter_opener_web/letters_controller.rb'
     - 'app/controllers/letter_opener_web/application_controller.rb'
     - 'app/models/letter_opener_web/letter.rb'

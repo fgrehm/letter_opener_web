@@ -33,10 +33,10 @@ jobs:
         run: bundle install
 
       - name: Lint with Rubocop
-        run: bundle exec rubocop
+        run: bin/rubocop
 
       - name: Run tests
-        run: bundle exec rspec
+        run: bin/rspec
 
       - name: Build gem
-        run: bundle exec rake build
+        run: bin/rake build

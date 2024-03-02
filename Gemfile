@@ -7,8 +7,15 @@ source 'http://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'rails', '~> 6.1'
-gem 'rspec-rails', '~> 5.0'
-gem 'rubocop', '~> 1.22'
-gem 'rubocop-rails', '~> 2.12'
-gem 'rubocop-rspec', '~> 2.5'
+group :development do
+  gem 'rails', '~> 6.1'
+  gem 'rspec-rails', '~> 5.0'
+  gem 'rubocop', '~> 1.22'
+  gem 'rubocop-rails', '~> 2.12'
+  gem 'rubocop-rspec', '~> 2.5'
+end
+
+group :development, :test do
+  gem 'pry-byebug'
+  gem 'pry-rails'
+end
