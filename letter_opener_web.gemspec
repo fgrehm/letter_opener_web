@@ -17,18 +17,10 @@ Gem::Specification.new do |gem|
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^exe/}).map { |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
   gem.add_dependency 'actionmailer', '>= 5.2'
   gem.add_dependency 'letter_opener', '~> 1.7'
   gem.add_dependency 'railties', '>= 5.2'
   gem.add_dependency 'rexml'
-
-  gem.add_development_dependency 'rails', '~> 6.1'
-  gem.add_development_dependency 'rspec-rails', '~> 5.0'
-  gem.add_development_dependency 'rubocop', '~> 1.22'
-  gem.add_development_dependency 'rubocop-rails', '~> 2.12'
-  gem.add_development_dependency 'rubocop-rspec', '~> 2.5'
-  gem.add_development_dependency 'shoulda-matchers', '~> 5.0'
 end
