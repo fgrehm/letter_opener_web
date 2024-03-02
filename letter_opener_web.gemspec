@@ -23,4 +23,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'letter_opener', '~> 1.7'
   gem.add_dependency 'railties', '>= 5.2'
   gem.add_dependency 'rexml'
+  gem.metadata['rubygems_mfa_required'] = 'true'
 end

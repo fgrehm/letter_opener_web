@@ -5,7 +5,7 @@ require 'letter_opener/delivery_method'
 module LetterOpenerWeb
   class DeliveryMethod < LetterOpener::DeliveryMethod
     def deliver!(mail)
-      original = ENV['LAUNCHY_DRY_RUN']
+      original = ENV.fetch('LAUNCHY_DRY_RUN', nil)
       ENV['LAUNCHY_DRY_RUN'] = 'true'
 
       super

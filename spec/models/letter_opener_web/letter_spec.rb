@@ -33,12 +33,10 @@ RSpec.describe LetterOpenerWeb::Letter do
 
     %w[1111_1111 2222_2222].each do |folder|
       FileUtils.mkdir_p("#{location}/#{folder}")
-      File.open("#{location}/#{folder}/plain.html", 'w') { |f| f.write("Plain text for #{folder}") }
-      File.open("#{location}/#{folder}/rich.html", 'w')  { |f| f.write(rich_text(folder)) }
+      File.write("#{location}/#{folder}/plain.html", "Plain text for #{folder}")
+      File.write("#{location}/#{folder}/rich.html", rich_text(folder))
       FileUtils.mkdir_p("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}")
-      File.open("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", 'w') do |f|
-        f.write("Rich text for #{folder}")
-      end
+      File.write("#{Rails.root.join('tmp', 'letter_opener')}/#{folder}/rich.html", "Rich text for #{folder}")
     end
   end
 
