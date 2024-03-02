@@ -22,7 +22,7 @@ module LetterOpenerWeb
     end
 
     def attachment
-      filename = "#{params[:file]}.#{params[:format]}"
+      filename = params[:file]
       file     = @letter.attachments[filename]
 
       return render plain: 'Attachment not found!', status: 404 unless file.present?

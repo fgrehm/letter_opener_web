@@ -1,6 +1,7 @@
 ## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v2.0.0...master)
 
-  - Reliably strip Attachment links from the sidebar. [#132](https://github.com/fgrehm/letter_opener_web/pull/132)
+  - Allow dot (`.`) character in attachment file names. [#131](https://github.com/fgrehm/letter_opener_web/pull/131)
+  - Reliably strip Attachment links from the sidebar. [#132](https://github.com/fgrehm/letter_opener_web/pull/134)
 
 ## [v2.0.0](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...v2.0.0)
 

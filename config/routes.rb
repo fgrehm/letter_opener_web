@@ -5,5 +5,5 @@ LetterOpenerWeb::Engine.routes.draw do
   post 'clear'                 => 'letters#clear',    as: :clear_letters
   get  ':id(/:style)'          => 'letters#show',     as: :letter
   post ':id/delete'            => 'letters#destroy',  as: :delete_letter
-  get  ':id/attachments/:file' => 'letters#attachment'
+  get  ':id/attachments/:file' => 'letters#attachment', constraints: { file: %r{[^/]+} }
 end
