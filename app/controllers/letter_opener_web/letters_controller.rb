@@ -15,14 +15,14 @@ module LetterOpenerWeb
 
     def show
       text = @letter.send("#{params[:style]}_text")
-                    .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
-                    .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
+                    .gsub('"plain.html"', "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
+                    .gsub('"rich.html"', "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
 
       render html: text.html_safe
     end
 
     def attachment
-      filename = "#{params[:file]}.#{params[:format]}"
+      filename = params[:file]
       file     = @letter.attachments[filename]
 
       return render plain: 'Attachment not found!', status: 404 unless file.present?

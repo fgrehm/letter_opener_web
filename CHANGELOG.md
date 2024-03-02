@@ -1,3 +1,7 @@
+## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v2.0.0...master)
+
+  - Allow dot (`.`) character in attachment file names. [#131](https://github.com/fgrehm/letter_opener_web/pull/131)
+
 ## [v2.0.0](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...v2.0.0)
 
   - Require Rails >= 5.2, run tests against Rails 6.1 [#113](https://github.com/fgrehm/letter_opener_web/pull/113)
