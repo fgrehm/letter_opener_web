@@ -81,10 +81,13 @@ module LetterOpenerWeb
 
     def remove_attachments_link(headers)
       xml = REXML::Document.new(headers)
-      if xml.root.elements.size == 10
-        xml.delete_element('//dd[last()]')
-        xml.delete_element('//dt[last()]')
+      label_element = xml.root.elements.find { |e| e.get_text&.value&.match?(/attachments:/i) }
+
+      if label_element
+        xml.root.delete_element(label_element.next_element) # the list of attachments
+        xml.root.delete_element(label_element)
       end
+
       xml.to_s
     end
 
