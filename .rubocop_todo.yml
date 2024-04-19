@@ -18,3 +18,7 @@ Style/Documentation:
     - 'lib/letter_opener_web.rb'
     - 'lib/letter_opener_web/delivery_method.rb'
     - 'lib/letter_opener_web/engine.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/models/letter_opener_web/letter.rb'
