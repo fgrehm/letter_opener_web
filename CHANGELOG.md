@@ -1,4 +1,6 @@
-## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v2.0.0...master)
+## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v3.0.0...master)
+
+## [3.0.0](https://github.com/fgrehm/letter_opener_web/compare/v2.0.0...v3.0.0)
 
 ### Breaking
   - Drop EoL'd Rubies and Rails - now requires Ruby 3.1+ and Rails 6.1+.

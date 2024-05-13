@@ -15,13 +15,13 @@ First add the gem to your development environment and run the `bundle` command t
 
 ```ruby
 group :development do
-  gem 'letter_opener_web', '~> 2.0'
+  gem 'letter_opener_web', '~> 3.0'
 end
 ```
 
 ## Usage
 
-Add to your routes.rb:
+Add to your `routes.rb`:
 
 ```ruby
 Your::Application.routes.draw do
@@ -53,7 +53,7 @@ config.action_mailer.delivery_method = :letter_opener_web
 ```
 
 If you're using `:letter_opener_web` as your delivery method, you can change the location of
-the letters by adding the following to an initializer (or in development.rb):
+the letters by adding the following to an initializer (or in `development.rb`):
 
 ```ruby
 LetterOpenerWeb.configure do |config|
@@ -106,7 +106,7 @@ few years.
 ## Contributing
 
 1. Fork it and run `bin/setup`
-2. Create your feature branch (`git checkout -b my-new-feature`)
+2. Create your feature branch (`git switch -c my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
