@@ -32,8 +32,11 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
+      - name: Lint with Rubocop
+        run: bundle exec rubocop
+
       - name: Run tests
-        run: bundle exec rake
+        run: bundle exec rspec
 
       - name: Build gem
         run: bundle exec rake build
