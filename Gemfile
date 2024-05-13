@@ -7,10 +7,6 @@ source 'http://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
-group :test do
-  gem 'codecov', require: false
-end
-
 gem 'rails', '~> 6.1'
 gem 'rspec-rails', '~> 5.0'
 gem 'rubocop', '~> 1.22'
