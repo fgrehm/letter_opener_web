@@ -13,15 +13,15 @@ Gem::Specification.new do |gem|
   gem.summary               = gem.description
   gem.homepage              = 'https://github.com/fgrehm/letter_opener_web'
   gem.license               = 'MIT'
-  gem.required_ruby_version = '>= 2.7'
+  gem.required_ruby_version = '>= 3.1'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^exe/}).map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
-  gem.add_dependency 'actionmailer', '>= 5.2'
-  gem.add_dependency 'letter_opener', '~> 1.7'
-  gem.add_dependency 'railties', '>= 5.2'
+  gem.add_dependency 'actionmailer', '>= 6.1'
+  gem.add_dependency 'letter_opener', '~> 1.9'
+  gem.add_dependency 'railties', '>= 6.1'
   gem.add_dependency 'rexml'
 
   gem.metadata['rubygems_mfa_required'] = 'true'

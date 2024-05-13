@@ -1,8 +1,14 @@
 ## [Unreleased](https://github.com/fgrehm/letter_opener_web/compare/v2.0.0...master)
 
-  - Add dark mode. [#119](https://github.com/fgrehm/letter_opener_web/pull/119)
-  - Allow dot (`.`) character in attachment file names. [#131](https://github.com/fgrehm/letter_opener_web/pull/131)
+### Breaking
+  - Drop EoL'd Rubies and Rails - now requires Ruby 3.1+ and Rails 6.1+.
+
+### Changes
   - Reliably strip Attachment links from the sidebar. [#132](https://github.com/fgrehm/letter_opener_web/pull/134)
+
+### Additions
+  - Allow dot (`.`) character in attachment file names. [#131](https://github.com/fgrehm/letter_opener_web/pull/131)
+  - Add dark mode. [#119](https://github.com/fgrehm/letter_opener_web/pull/119)
 
 ## [v2.0.0](https://github.com/fgrehm/letter_opener_web/compare/v1.4.1...v2.0.0)
 
