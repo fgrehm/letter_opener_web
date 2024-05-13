@@ -10,3 +10,10 @@ gemspec
 group :test do
   gem 'codecov', require: false
 end
+
+gem 'rails', '~> 6.1'
+gem 'rspec-rails', '~> 5.0'
+gem 'rubocop', '~> 1.22'
+gem 'rubocop-rails', '~> 2.12'
+gem 'rubocop-rspec', '~> 2.5'
+gem 'shoulda-matchers', '~> 5.0'

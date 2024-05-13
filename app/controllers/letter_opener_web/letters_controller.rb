@@ -15,8 +15,8 @@ module LetterOpenerWeb
 
     def show
       text = @letter.send("#{params[:style]}_text")
-                    .gsub(/"plain\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
-                    .gsub(/"rich\.html"/, "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
+                    .gsub('"plain.html"', "\"#{routes.letter_path(id: @letter.id, style: 'plain')}\"")
+                    .gsub('"rich.html"', "\"#{routes.letter_path(id: @letter.id, style: 'rich')}\"")
 
       render html: text.html_safe
     end

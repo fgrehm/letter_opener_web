@@ -13,6 +13,7 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
     - 'app/controllers/letter_opener_web/letters_controller.rb'
+    - 'app/controllers/letter_opener_web/application_controller.rb'
     - 'app/models/letter_opener_web/letter.rb'
     - 'lib/letter_opener_web.rb'
     - 'lib/letter_opener_web/delivery_method.rb'
