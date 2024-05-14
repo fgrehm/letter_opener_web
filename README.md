@@ -7,8 +7,6 @@
 Gives [letter_opener](https://github.com/ryanb/letter_opener) an interface for
 browsing sent emails.
 
-Check out http://letter-opener-web.herokuapp.com to see it in action.
-
 ## Installation
 
 First add the gem to your development environment and run the `bundle` command to install it.
