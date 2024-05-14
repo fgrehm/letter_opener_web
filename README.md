@@ -90,9 +90,58 @@ end
 You might also want to have a look at the sources for the [demo](http://letter-opener-web.herokuapp.com)
 available at https://github.com/fgrehm/letter_opener_web_demo.
 
-**NOTICE: Using this gem on Heroku will only work if your app has just one Dyno
-and does not send emails from background jobs. For updates on this matter please
-subscribe to [GH-35](https://github.com/fgrehm/letter_opener_web/issues/35)**
+### Usage with Amazon S3 to support multiple separated instances
+
+If you are using this gem on Heroku and your application is not using one Dyno or your have containerized setup, the default configuration won't work as the e-mail is saved on the server. You can use S3 bucket instead.
+
+**1. Configure AWS environment:**
+
+* Create new non-public bucket, note the name and the region
+* Create new user using IAM or use existing one for which you already have `aws_access_key_id` and `aws_secret_access_key`
+* Assign proper policy to the user. Replace `your-bucket-name` with the name of the bucket you have created
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+          "s3:PutObject",
+          "s3:PutObjectAcl",
+          "s3:GetObject",
+          "s3:DeleteObject*"
+      ],
+      "Resource": "arn:aws:s3:::your-bucket-name/*"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+          "s3:ListBucket"
+      ],
+      "Resource": "arn:aws:s3:::your-bucket-name"
+    }
+  ]
+}
+```
+
+**2. Update gem configuration:**
+
+Add the following configuration to the initializer (or environment files):
+
+```ruby
+LetterOpenerWeb.configure do |config|
+  config.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+  config.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+  config.aws_region = ENV['AWS_REGION']
+  config.aws_bucket = ENV['AWS_BUCKET']
+  config.letters_location = :s3
+end
+```
+
+When you send e-mail with attachment(s), the presigned link is generated to attachment that is valid for 1 week.
 
 ## Acknowledgements
 
