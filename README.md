@@ -87,9 +87,6 @@ Your::Application.routes.draw do
 end
 ```
 
-You might also want to have a look at the sources for the [demo](http://letter-opener-web.herokuapp.com)
-available at https://github.com/fgrehm/letter_opener_web_demo.
-
 **NOTICE: Using this gem on Heroku will only work if your app has just one Dyno
 and does not send emails from background jobs. For updates on this matter please
 subscribe to [GH-35](https://github.com/fgrehm/letter_opener_web/issues/35)**
