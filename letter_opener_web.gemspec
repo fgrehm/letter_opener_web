@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'actionmailer', '>= 6.1'
   gem.add_dependency 'letter_opener', '~> 1.9'
   gem.add_dependency 'railties', '>= 6.1'
-  gem.add_dependency 'rexml'
+  gem.add_dependency 'rexml', '~> 3.3.2'
 
   gem.metadata['rubygems_mfa_required'] = 'true'
 end
