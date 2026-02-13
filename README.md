@@ -87,9 +87,13 @@ Your::Application.routes.draw do
 end
 ```
 
-**NOTICE: Using this gem on Heroku will only work if your app has just one Dyno
-and does not send emails from background jobs. For updates on this matter please
-subscribe to [GH-35](https://github.com/fgrehm/letter_opener_web/issues/35)**
+### Using on Heroku / Multi-Machine Environments
+
+For Heroku or other multi-machine/multi-dyno environments, use alternative storage backends:
+
+**[letter_opener_web-redis](https://github.com/WizaCo/letter_opener_web-redis)** - Stores emails in Redis.
+
+**[letter_opener_web-s3](https://github.com/WizaCo/letter_opener_web-s3)** - Stores emails in Amazon S3.
 
 ## Acknowledgements
 

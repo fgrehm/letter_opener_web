@@ -10,7 +10,7 @@ module LetterOpenerWeb
     before_action :load_letter, only: %i[show attachment destroy]
 
     def index
-      @letters = LetterOpenerWeb::Letter.search
+      @letters = letter_class.search
     end
 
     def show
@@ -23,15 +23,14 @@ module LetterOpenerWeb
 
     def attachment
       filename = params[:file]
-      file     = @letter.attachments[filename]
 
-      return render plain: 'Attachment not found!', status: 404 unless file.present?
+      return render plain: 'Attachment not found!', status: 404 unless @letter.attachments.key?(filename)
 
-      send_file(file, filename: filename, disposition: 'inline')
+      @letter.send_attachment(self, filename)
     end
 
     def clear
-      LetterOpenerWeb::Letter.destroy_all
+      letter_class.destroy_all
       redirect_to routes.letters_path
     end
 
@@ -50,13 +49,17 @@ module LetterOpenerWeb
     end
 
     def load_letter
-      @letter = LetterOpenerWeb::Letter.find(params[:id])
+      @letter = letter_class.find(params[:id])
 
       head :not_found unless @letter.valid?
     end
 
     def routes
       LetterOpenerWeb.railtie_routes_url_helpers
+    end
+
+    def letter_class
+      LetterOpenerWeb.config.letter_class
     end
   end
 end

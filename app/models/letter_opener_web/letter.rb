@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
+require 'letter_opener_web/letter_interface'
+
 module LetterOpenerWeb
+  # Default file-based Letter implementation
+  #
+  # This is the original file-based storage implementation that reads
+  # letters from the local filesystem.
   class Letter
-    attr_reader :id, :sent_at
+    include LetterInterface
 
     def self.letters_location
       @letters_location ||= LetterOpenerWeb.config.letters_location
@@ -75,6 +81,13 @@ module LetterOpenerWeb
 
     def valid?
       exists? && base_dir_within_letters_location?
+    end
+
+    def send_attachment(controller, filename)
+      file_path = attachments[filename]
+      return unless file_path
+
+      controller.send_file(file_path, filename: filename, disposition: 'inline')
     end
 
     private

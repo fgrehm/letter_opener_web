@@ -89,24 +89,21 @@ RSpec.describe LetterOpenerWeb::LettersController do
 
     context 'when the file exists' do
       before do
-        # Stub a 200 response b/c `send_file` will 204 when the file doesn't actually exist
-        allow(controller).to receive(:send_file) { controller.head :ok }
+        allow(letter).to receive(:send_attachment) { controller.head :ok }
       end
 
       it 'sends the file as an inline attachment' do
         get :attachment, params: { id: id, file: file_name }
 
         expect(response.status).to eq(200)
-        expect(controller).to have_received(:send_file)
-          .with(attachment_path, filename: file_name, disposition: 'inline')
+        expect(letter).to have_received(:send_attachment).with(controller, file_name)
       end
 
       context 'when file name includes a dot' do
         let(:file_name) { 'image.dot.jpg' }
 
         it 'sends the file as an inline attachment' do
-          expect(controller).to receive(:send_file).with(attachment_path, filename: file_name,
-                                                                          disposition: 'inline')
+          expect(letter).to receive(:send_attachment).with(controller, file_name) { controller.head :ok }
           get :attachment, params: { id: id, file: file_name }
           expect(response.status).to eq(200)
         end
