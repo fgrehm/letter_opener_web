@@ -8,6 +8,7 @@ source 'http://rubygems.org'
 gemspec
 
 group :development do
+  gem 'concurrent-ruby', '= 1.3.4'
   gem 'rails', '~> 6.1'
   gem 'rspec-rails', '~> 5.0'
   gem 'rubocop', '~> 1.22'
