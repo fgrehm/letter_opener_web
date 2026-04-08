@@ -80,6 +80,38 @@ end
 When enabled, LetterOpenerWeb applies a CSS-based inversion strategy to
 approximate dark mode for templates that do not define their own styles,
 similar to high-contrast or browser-level color inversion.
+### HTTP Basic Authentication
+
+When using the gem in staging or pre-production, you can protect the web interface with
+HTTP Basic Auth. By default, authentication is disabled for ease of setup.
+
+```ruby
+# config/initializers/letter_opener_web.rb
+LetterOpenerWeb.configure do |config|
+  # By default, authentication is disabled for ease of setup
+  config.authentication_enabled = false
+
+  # Set the username for HTTP Basic Authentication (only used if authentication is enabled)
+  config.username = 'admin'
+
+  # Set the password for HTTP Basic Authentication (only used if authentication is enabled)
+  config.password = 'password'
+end
+```
+
+To enable authentication, set `authentication_enabled = true` and ensure both `username` and
+`password` are set. Every request to the Letter Opener Web UI will then require HTTP Basic
+Authentication.
+
+For staging, prefer environment variables so credentials are not committed:
+
+```ruby
+LetterOpenerWeb.configure do |config|
+  config.authentication_enabled = true
+  config.username = ENV['LETTER_OPENER_WEB_USERNAME']
+  config.password = ENV['LETTER_OPENER_WEB_PASSWORD']
+end
+```
 
 ## Usage on pre-production environments
 

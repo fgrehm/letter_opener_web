@@ -7,6 +7,72 @@ RSpec.describe LetterOpenerWeb::LettersController do
 
   after(:each) { LetterOpenerWeb.reset! }
 
+  describe 'Basic authentication' do
+    context 'when authentication is enabled with username and password' do
+      before do
+        LetterOpenerWeb.configure do |config|
+          config.authentication_enabled = true
+          config.username = 'admin'
+          config.password = 'secret'
+        end
+      end
+
+      it 'returns 401 Unauthorized without credentials' do
+        allow(LetterOpenerWeb::Letter).to receive(:search)
+        get :index
+        expect(response.status).to eq(401)
+      end
+
+      it 'returns 200 with correct credentials' do
+        allow(LetterOpenerWeb::Letter).to receive(:search)
+        request.env['HTTP_AUTHORIZATION'] =
+          ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'secret')
+        get :index
+        expect(response.status).to eq(200)
+      end
+
+      it 'returns 401 with wrong password' do
+        allow(LetterOpenerWeb::Letter).to receive(:search)
+        request.env['HTTP_AUTHORIZATION'] =
+          ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'wrong')
+        get :index
+        expect(response.status).to eq(401)
+      end
+
+      it 'returns 401 with wrong username' do
+        allow(LetterOpenerWeb::Letter).to receive(:search)
+        request.env['HTTP_AUTHORIZATION'] =
+          ActionController::HttpAuthentication::Basic.encode_credentials('wrong', 'secret')
+        get :index
+        expect(response.status).to eq(401)
+      end
+    end
+
+    context 'when authentication_enabled is false' do
+      before do
+        LetterOpenerWeb.configure do |config|
+          config.authentication_enabled = false
+          config.username = 'admin'
+          config.password = 'secret'
+        end
+      end
+
+      it 'allows access without credentials even when username and password are set' do
+        allow(LetterOpenerWeb::Letter).to receive(:search)
+        get :index
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'when username and password are not configured' do
+      it 'allows access without credentials' do
+        allow(LetterOpenerWeb::Letter).to receive(:search)
+        get :index
+        expect(response.status).to eq(200)
+      end
+    end
+  end
+
   describe 'GET index' do
     before do
       allow(LetterOpenerWeb::Letter).to receive(:search)
