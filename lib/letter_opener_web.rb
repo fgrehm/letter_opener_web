@@ -6,13 +6,14 @@ require 'rexml/document'
 
 module LetterOpenerWeb
   class Config
-    attr_accessor :letters_location, :auto_dark_mode
+    attr_accessor :letters_location, :auto_dark_mode, :letter_inline_styles
   end
 
   def self.config
     @config ||= Config.new.tap do |conf|
       conf.letters_location = Rails.root.join('tmp', 'letter_opener')
       conf.auto_dark_mode = false
+      conf.letter_inline_styles = false
     end
   end
 

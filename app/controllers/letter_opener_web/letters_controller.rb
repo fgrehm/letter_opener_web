@@ -6,8 +6,11 @@ end
 
 module LetterOpenerWeb
   class LettersController < ApplicationController
+    include LetterInlineStyles
+
     before_action :check_style, only: :show
     before_action :load_letter, only: %i[show attachment destroy]
+    before_action :allow_letter_inline_styles, only: :show, if: :letter_inline_styles?
 
     def index
       @letters = LetterOpenerWeb::Letter.search

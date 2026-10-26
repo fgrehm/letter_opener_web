@@ -3,6 +3,7 @@
 ### Additions
 - Make dark mode color inversion optional via `LetterOpenerWeb.config.auto_dark_mode` (default: `false`).  
   This avoids double-inversion issues for email templates that already implement `prefers-color-scheme`. [#146]
+- Add `LetterOpenerWeb.config.letter_inline_styles` (default: `false`), so letters render their inline styles and images under an app Content Security Policy that blocks them. Scripts and the inbox stay under the app's policy.
 
 ## [3.0.0](https://github.com/fgrehm/letter_opener_web/compare/v2.0.0...v3.0.0)
 

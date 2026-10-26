@@ -81,6 +81,18 @@ When enabled, LetterOpenerWeb applies a CSS-based inversion strategy to
 approximate dark mode for templates that do not define their own styles,
 similar to high-contrast or browser-level color inversion.
 
+### letter_inline_styles
+
+If your app's Content Security Policy blocks inline styles, letters show
+unstyled. This option allows inline styles and images on the letter view
+only; scripts and the inbox keep your policy.
+
+```ruby
+LetterOpenerWeb.configure do |config|
+  config.letter_inline_styles = true
+end
+```
+
 ## Usage on pre-production environments
 
 Some people use this gem on staging / pre-production environments to avoid having real emails
